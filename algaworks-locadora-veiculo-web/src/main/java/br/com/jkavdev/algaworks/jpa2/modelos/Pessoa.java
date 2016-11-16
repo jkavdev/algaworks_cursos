@@ -7,6 +7,8 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -28,6 +30,7 @@ public abstract class Pessoa implements Serializable {
 	private String nome;
 	private Date dataNascimento;
 	private String cpf;
+	private Sexo sexo;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -63,6 +66,15 @@ public abstract class Pessoa implements Serializable {
 
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
+	}
+
+	@Enumerated(EnumType.STRING)
+	public Sexo getSexo() {
+		return sexo;
+	}
+
+	public void setSexo(Sexo sexo) {
+		this.sexo = sexo;
 	}
 
 	@Override

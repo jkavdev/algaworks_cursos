@@ -37,6 +37,12 @@
 	    		<p:outputLabel value="Data de nascimento" for="dataNascimento"/>
 	    		<p:calendar id="dataNascimento" size="20" value="#{cadastroFuncionarioBean.funcionario.dataNascimento}" pattern="dd/MM/yyyy"/>
 	    		
+	    		<p:outputLabel value="Sexo" for="sexo"/>
+				<p:selectOneMenu id="sexo" value="#{cadastroFuncionarioBean.funcionario.sexo}">
+					<f:selectItem itemLabel="Selecione o sexo" />
+				    	<f:selectItems value="#{cadastroFuncionarioBean.sexo}" var="sexo" itemLabel="#{sexo.descricao}" itemValue="#{sexo}"/>
+				</p:selectOneMenu>					    		
+	    		
 	    		<p:outputLabel value="CPF" for="cpf"/>
 	    		<p:inputText id="cpf" size="20" maxlength="20" value="#{cadastroFuncionarioBean.funcionario.cpf}"/>
 	    		

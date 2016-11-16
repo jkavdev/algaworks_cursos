@@ -38,6 +38,12 @@
 	    		<p:outputLabel value="Data de nascimento" for="dataNascimento"/>
 	    		<p:calendar id="dataNascimento" size="20" value="#{cadastroMotoristaBean.motorista.dataNascimento}" pattern="dd/MM/yyyy" />
 	    		
+	    		<p:outputLabel value="Sexo" for="sexo"/>
+				<p:selectOneMenu id="sexo" value="#{cadastroMotoristaBean.motorista.sexo}">
+					<f:selectItem itemLabel="Selecione o sexo" />
+				    	<f:selectItems value="#{cadastroMotoristaBean.sexo}" var="sexo" itemLabel="#{sexo.descricao}" itemValue="#{sexo}"/>
+				</p:selectOneMenu>					    		
+	    		
 	    		<p:outputLabel value="CPF" for="cpf"/>
 	    		<p:inputText id="cpf" size="20" maxlength="20" value="#{cadastroMotoristaBean.motorista.cpf}"/>
 	    		
