@@ -18,7 +18,7 @@ public class FabricanteDao implements Serializable {
 	private EntityManager entityManager;
 
 	public void salvar(Fabricante fabricante) {
-		this.entityManager.persist(fabricante);
+		this.entityManager.merge(fabricante);
 	}
 
 	public List<Fabricante> buscarTodos() {
