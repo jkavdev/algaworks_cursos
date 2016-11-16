@@ -1,6 +1,7 @@
 package br.com.jkavdev.algaworks.jpa2.beans;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -9,6 +10,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.jkavdev.algaworks.jpa2.daos.FabricanteDao;
+import br.com.jkavdev.algaworks.jpa2.modelos.Categoria;
 import br.com.jkavdev.algaworks.jpa2.modelos.Fabricante;
 import br.com.jkavdev.algaworks.jpa2.modelos.ModeloCarro;
 import br.com.jkavdev.algaworks.jpa2.services.ModeloCarroService;
@@ -59,6 +61,10 @@ public class CadastroModeloCarroBean implements Serializable {
 
 	public List<Fabricante> getFabricantes() {
 		return fabricantes;
+	}
+	
+	public List<Categoria> getCategorias(){
+		return Arrays.asList(Categoria.values());
 	}
 
 }
