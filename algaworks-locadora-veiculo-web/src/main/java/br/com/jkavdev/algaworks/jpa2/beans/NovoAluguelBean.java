@@ -9,9 +9,11 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import br.com.jkavdev.algaworks.jpa2.daos.CarroDao;
+import br.com.jkavdev.algaworks.jpa2.daos.MotoristaDao;
 import br.com.jkavdev.algaworks.jpa2.modelos.Aluguel;
 import br.com.jkavdev.algaworks.jpa2.modelos.ApoliceSeguro;
 import br.com.jkavdev.algaworks.jpa2.modelos.Carro;
+import br.com.jkavdev.algaworks.jpa2.modelos.Motorista;
 import br.com.jkavdev.algaworks.jpa2.services.AluguelService;
 import br.com.jkavdev.algaworks.jpa2.services.NegocioException;
 import br.com.jkavdev.algaworks.jpa2.util.jsf.FacesUtil;
@@ -26,14 +28,18 @@ public class NovoAluguelBean implements Serializable {
 	private AluguelService aluguelService;
 	@Inject
 	private CarroDao carroDao;
+	@Inject
+	private MotoristaDao motoristaDao;
 
 	private List<Carro> carros;
+	private List<Motorista> motoristas;
 	private Aluguel aluguel;
 
 	@PostConstruct
 	public void init() {
 		limparFormulario();
 		carros = carroDao.buscarTodos();
+		motoristas = motoristaDao.buscarTodos();
 	}
 
 	public void salvar() {
@@ -53,6 +59,10 @@ public class NovoAluguelBean implements Serializable {
 
 	public List<Carro> getCarros() {
 		return carros;
+	}
+	
+	public List<Motorista> getMotoristas() {
+		return motoristas;
 	}
 
 	public Aluguel getAluguel() {
