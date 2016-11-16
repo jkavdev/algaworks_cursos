@@ -2,6 +2,8 @@ package br.com.jkavdev.algaworks.jpa2.modelos;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Calendar;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,6 +15,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "alugueis")
@@ -24,6 +28,9 @@ public class Aluguel implements Serializable {
 	private BigDecimal valorTotal;
 	private Carro carro;
 	private ApoliceSeguro apoliceSeguro;
+	private Calendar dataPedido;
+	private Date dataEntrega;
+	private Date dataDevolucao;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -62,6 +69,61 @@ public class Aluguel implements Serializable {
 
 	public void setApoliceSeguro(ApoliceSeguro apoliceSeguro) {
 		this.apoliceSeguro = apoliceSeguro;
+	}
+
+	@Temporal(TemporalType.DATE)
+	@Column(name = "data_pedido")
+	public Calendar getDataPedido() {
+		return dataPedido;
+	}
+
+	public void setDataPedido(Calendar dataPedido) {
+		this.dataPedido = dataPedido;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_entrega")
+	public Date getDataEntrega() {
+		return dataEntrega;
+	}
+
+	public void setDataEntrega(Date dataEntrega) {
+		this.dataEntrega = dataEntrega;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_devolucao")
+	public Date getDataDevolucao() {
+		return dataDevolucao;
+	}
+
+	public void setDataDevolucao(Date dataDevolucao) {
+		this.dataDevolucao = dataDevolucao;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Aluguel other = (Aluguel) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
+		return true;
 	}
 
 }
