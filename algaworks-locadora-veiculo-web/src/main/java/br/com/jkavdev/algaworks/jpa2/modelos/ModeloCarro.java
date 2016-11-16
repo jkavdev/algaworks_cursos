@@ -1,34 +1,35 @@
 package br.com.jkavdev.algaworks.jpa2.modelos;
 
+import javax.persistence.Table;
+import javax.persistence.TableGenerator;
+
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
-import javax.persistence.TableGenerator;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "fabricantes")
+@Table(name = "modelos_carros")
 @TableGenerator(
 		name = Fabricante.TABELA_ID, 
 		table = Fabricante.TABELA_ID,
 		allocationSize = 20,	
 		pkColumnName = Fabricante.TABELA_ID_COLUNA,
 		valueColumnName = Fabricante.TABELA_ID_VALOR)
-public class Fabricante implements Serializable {
+public class ModeloCarro implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	public static final String TABELA_ID = "tabela_de_ids";
-	public static final String TABELA_ID_COLUNA = "entidade";
-	public static final String TABELA_ID_VALOR = "alocacao";
 
 	private Long codigo;
-	private String nome;
+	private String descricao;
+	private Fabricante fabricante;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = TABELA_ID)
+	@GeneratedValue(generator = Fabricante.TABELA_ID, strategy = GenerationType.TABLE)
 	public Long getCodigo() {
 		return codigo;
 	}
@@ -37,12 +38,22 @@ public class Fabricante implements Serializable {
 		this.codigo = codigo;
 	}
 
-	public String getNome() {
-		return nome;
+	@Column(name = "descricao_modelo")
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
+
+	@ManyToOne
+	public Fabricante getFabricante() {
+		return fabricante;
+	}
+
+	public void setFabricante(Fabricante fabricante) {
+		this.fabricante = fabricante;
 	}
 
 	@Override
@@ -61,7 +72,7 @@ public class Fabricante implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fabricante other = (Fabricante) obj;
+		ModeloCarro other = (ModeloCarro) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;
