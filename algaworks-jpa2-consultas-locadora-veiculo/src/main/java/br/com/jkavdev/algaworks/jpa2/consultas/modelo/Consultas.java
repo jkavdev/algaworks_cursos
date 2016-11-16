@@ -19,5 +19,19 @@ public class Consultas extends JunitJpaConfig {
 			System.out.println("Fabricante: " + nome);
 		}
 	}
+	
+	@Test
+	public void buscaModeloFiltradoFabricante(){
+		String fabricanteNome = "Fiat";
+		String jpql = "select mc.descricao from ModeloCarro mc where mc.fabricante.nome = :nome";
+		
+		List<String> descricaoModelos = getManager().createQuery(jpql, String.class)
+				.setParameter("nome", fabricanteNome)
+				.getResultList();
+		
+		for (String descricao : descricaoModelos) {
+			System.out.println("Descricao: " + descricao);
+		}
+	}
 
 }
