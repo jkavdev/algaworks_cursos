@@ -37,4 +37,10 @@ public class CarroDao implements Serializable {
 		this.entityManager.flush();
 	}
 
+	public Carro buscarCarroComAcessorios(Long codigo) {
+		return this.entityManager.createQuery("select c from Carro c join c.acessorios where c.codigo = :codigo", Carro.class)
+				.setParameter("codigo", codigo)
+				.getSingleResult();
+	}
+
 }
