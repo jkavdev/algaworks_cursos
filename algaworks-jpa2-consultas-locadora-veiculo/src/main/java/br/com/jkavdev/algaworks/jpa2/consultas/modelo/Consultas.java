@@ -1,16 +1,18 @@
 package br.com.jkavdev.algaworks.jpa2.consultas.modelo;
 
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 
 import br.com.jkavdev.algaworks.jpa2.consultas.JunitJpaConfig;
+import br.com.jkavdev.algaworks.jpa2.modelo.Categoria;
 
 public class Consultas extends JunitJpaConfig {
 
 	@Test
 	public void buscaNomesFabricantesPeloModeloCarro() {
-		String jpql = "select mc.fabricante.nome  from ModeloCarro mc";
+		String jpql = "select mc.fabricante.nome from ModeloCarro mc";
 		
 		List<String> nomefabricantes = getManager().createQuery(jpql, String.class)
 				.getResultList();
@@ -27,6 +29,24 @@ public class Consultas extends JunitJpaConfig {
 		
 		List<String> descricaoModelos = getManager().createQuery(jpql, String.class)
 				.setParameter("nome", fabricanteNome)
+				.getResultList();
+		
+		for (String descricao : descricaoModelos) {
+			System.out.println("Descricao: " + descricao);
+		}
+	}
+	
+	@Test
+	public void buscaModeloFiltroEmFabricanteECategoria(){
+		String fabricanteNome = "Fiat";
+		List<Categoria> categorias = Arrays.asList(
+				Categoria.SEDAN_GRANDE, 
+				Categoria.HATCH_MEDIO);
+		String jpql = "select mc.descricao from ModeloCarro mc where mc.fabricante.nome = :nome and mc.categoria in :categorias";
+		
+		List<String> descricaoModelos = getManager().createQuery(jpql, String.class)
+				.setParameter("nome", fabricanteNome)
+				.setParameter("categorias", categorias)
 				.getResultList();
 		
 		for (String descricao : descricaoModelos) {
