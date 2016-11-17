@@ -10,6 +10,7 @@ import javax.inject.Named;
 
 import br.com.jkavdev.algaworks.jpa2.daos.CarroDao;
 import br.com.jkavdev.algaworks.jpa2.modelos.Carro;
+import br.com.jkavdev.algaworks.jpa2.modeloslazy.LazyCarroDataModel;
 import br.com.jkavdev.algaworks.jpa2.services.NegocioException;
 import br.com.jkavdev.algaworks.jpa2.util.jsf.FacesUtil;
 
@@ -21,13 +22,14 @@ public class PesquisaCarroBean implements Serializable {
 
 	@Inject
 	private CarroDao carroDao;
-
+	
 	private List<Carro> carros;
+	private LazyCarroDataModel lazyCarros;
 	private Carro carroSelecionado;
 
 	@PostConstruct
 	public void init() {
-		carros = carroDao.buscarTodos();
+		lazyCarros = new LazyCarroDataModel(carroDao);
 	}
 
 	public void excluir() {
@@ -50,6 +52,10 @@ public class PesquisaCarroBean implements Serializable {
 
 	public void setCarroSelecionado(Carro carroSelecionado) {
 		this.carroSelecionado = carroSelecionado;
+	}
+	
+	public LazyCarroDataModel getLazyCarros() {
+		return lazyCarros;
 	}
 
 	public List<Carro> getCarros() {

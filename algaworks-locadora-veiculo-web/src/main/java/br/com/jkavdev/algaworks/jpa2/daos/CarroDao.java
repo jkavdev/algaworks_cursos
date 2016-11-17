@@ -30,9 +30,9 @@ public class CarroDao implements Serializable {
 	}
 
 	@Transactional
-	public void excluir(Carro carro) throws NegocioException {		
+	public void excluir(Carro carro) throws NegocioException {
 		carro = buscarPeloCodigo(carro.getCodigo());
-		
+
 		this.entityManager.remove(carro);
 		this.entityManager.flush();
 	}
@@ -42,5 +42,20 @@ public class CarroDao implements Serializable {
 				.setParameter("codigo", codigo)
 				.getSingleResult();
 	}
+
+	public List<Carro> buscarComPaginacao(int primeiroRegistro, int totalDeRegistro) {
+		return this.entityManager.createNamedQuery("Carro.buscarTodos", Carro.class)
+				.setFirstResult(primeiroRegistro)
+				.setMaxResults(totalDeRegistro)
+				.getResultList();
+	}
+
+	public Long buscarQuantidadeDeCarros() {
+		return this.entityManager.createQuery("select count(c) from Carro c", Long.class)
+				.getSingleResult();
+	}
+
+	// select * from carro limit 4 - trara apenas 4 resultados
+	// select * from carro limit 4,2 - trara 2 resultados a partir do 5 resultado
 
 }
