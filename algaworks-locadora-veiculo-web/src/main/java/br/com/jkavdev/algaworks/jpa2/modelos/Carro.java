@@ -2,6 +2,7 @@ package br.com.jkavdev.algaworks.jpa2.modelos;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -16,7 +17,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Table(name = "carros")
@@ -35,6 +40,9 @@ public class Carro implements Serializable {
 	private ModeloCarro modeloCarro;	
 	private List<Acessorio> acessorios;
 	private List<Aluguel> alugueis;
+	
+	private Date dataCriacao;
+	private Date dataModificao;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -101,6 +109,36 @@ public class Carro implements Serializable {
 
 	public void setAlugueis(List<Aluguel> alugueis) {
 		this.alugueis = alugueis;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_criacao")
+	public Date getDataCriacao() {
+		return dataCriacao;
+	}
+
+	public void setDataCriacao(Date dataCriacao) {
+		this.dataCriacao = dataCriacao;
+	}
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "data_modificao")
+	public Date getDataModificao() {
+		return dataModificao;
+	}
+
+	public void setDataModificao(Date dataModificao) {
+		this.dataModificao = dataModificao;
+	}
+	
+	@PrePersist
+	@PreUpdate
+	public void configuraDatasCriacaoEAlteracao(){
+		this.dataModificao = new Date();
+		
+		if(this.dataCriacao == null){
+			this.dataCriacao = new Date();
+		}
 	}
 
 	@Override
