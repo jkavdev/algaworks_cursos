@@ -53,5 +53,17 @@ public class Consultas extends JunitJpaConfig {
 			System.out.println("Descricao: " + descricao);
 		}
 	}
+	
+	@Test
+	public void buscaDescricaoECategoriaDeModeloCarro(){
+		String jpql = "select mc.descricao, mc.categoria from ModeloCarro mc ";
+		
+		List<Object[]> resultados = getManager().createQuery(jpql, Object[].class)
+				.getResultList();
+		
+		for (Object[] objects : resultados) {
+			System.out.println("Descrição: " + objects[0] + " e Categoria: " + objects[1]);
+		}
+	}
 
 }
