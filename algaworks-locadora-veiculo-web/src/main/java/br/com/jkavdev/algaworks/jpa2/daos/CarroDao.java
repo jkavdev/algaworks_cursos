@@ -22,7 +22,7 @@ public class CarroDao implements Serializable {
 	}
 
 	public List<Carro> buscarTodos() {
-		return this.entityManager.createQuery("from Carro", Carro.class).getResultList();
+		return this.entityManager.createNamedQuery("Carro.buscarTodos", Carro.class).getResultList();
 	}
 
 	public Carro buscarPeloCodigo(Long codigo) {
@@ -38,7 +38,7 @@ public class CarroDao implements Serializable {
 	}
 
 	public Carro buscarCarroComAcessorios(Long codigo) {
-		return this.entityManager.createQuery("select c from Carro c join c.acessorios where c.codigo = :codigo", Carro.class)
+		return this.entityManager.createNamedQuery("Carro.buscarCarroComAcessorios", Carro.class)
 				.setParameter("codigo", codigo)
 				.getSingleResult();
 	}
