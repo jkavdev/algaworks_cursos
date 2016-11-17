@@ -1,4 +1,4 @@
-package com.algaworks.jboss.modelo;
+package br.com.jkavdev.algaworks.jpa2.jboss.modelo;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

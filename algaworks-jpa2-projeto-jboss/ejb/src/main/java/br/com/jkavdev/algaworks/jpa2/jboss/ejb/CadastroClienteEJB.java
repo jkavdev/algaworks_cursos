@@ -1,4 +1,4 @@
-package com.algaworks.jboss.ejb;
+package br.com.jkavdev.algaworks.jpa2.jboss.ejb;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.algaworks.jboss.modelo.Cliente;
+import br.com.jkavdev.algaworks.jpa2.jboss.modelo.Cliente;
 
 @Stateless
 public class CadastroClienteEJB {

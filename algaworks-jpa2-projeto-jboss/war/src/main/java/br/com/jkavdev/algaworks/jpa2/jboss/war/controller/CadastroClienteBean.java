@@ -1,4 +1,4 @@
-package com.algaworks.jboss.controller;
+package br.com.jkavdev.algaworks.jpa2.jboss.war.controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -8,8 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
-import com.algaworks.jboss.ejb.CadastroClienteEJB;
-import com.algaworks.jboss.modelo.Cliente;
+import br.com.jkavdev.algaworks.jpa2.jboss.ejb.CadastroClienteEJB;
+import br.com.jkavdev.algaworks.jpa2.jboss.modelo.Cliente;
 
 @Named
 @SessionScoped
