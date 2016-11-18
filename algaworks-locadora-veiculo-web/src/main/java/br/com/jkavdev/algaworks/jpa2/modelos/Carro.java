@@ -91,7 +91,7 @@ public class Carro implements Serializable {
 		this.modeloCarro = modeloCarro;
 	}
 
-	@ManyToMany(fetch=FetchType.LAZY)
+	@ManyToMany(fetch=FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinTable(
 			name = "carro_acessorios", 
 			joinColumns = @JoinColumn(name = "codigo_carro"), 
