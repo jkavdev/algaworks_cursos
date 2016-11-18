@@ -1,6 +1,5 @@
 package br.com.jkavdev.algaworks.jpa2.test;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -33,9 +32,17 @@ public abstract class JunitJpaConfig {
 	public EntityManager getManager() {
 		return manager;
 	}
-	
-	public CriteriaBuilder getCriteriaBuilder(){
+
+	public CriteriaBuilder getCriteriaBuilder() {
 		return this.manager.getCriteriaBuilder();
+	}
+
+	public void beginTransaction() {
+		this.manager.getTransaction().begin();
+	}
+
+	public void commit() {
+		this.manager.getTransaction().commit();
 	}
 
 }
