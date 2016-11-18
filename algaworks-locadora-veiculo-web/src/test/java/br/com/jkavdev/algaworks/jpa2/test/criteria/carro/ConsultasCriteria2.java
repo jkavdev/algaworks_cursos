@@ -3,6 +3,7 @@ package br.com.jkavdev.algaworks.jpa2.test.criteria.carro;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Order;
 import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
@@ -32,7 +33,25 @@ public class ConsultasCriteria2 extends JunitJpaConfig {
 		for (Carro carro2 : carros) {
 			System.out.println("Placa " + carro2.getPlaca() + " - " + carro2.getCor());
 		}
+	}
+	
+	@Test
+	public void buscaComOrdenacao(){
+		CriteriaQuery<Carro> criteriaQuery = getCriteriaBuilder().createQuery(Carro.class);
 
+		Root<Carro> carro = criteriaQuery.from(Carro.class);
+		//Indicando uma ordem decrescente sobre valorDiaria
+		Order order = getCriteriaBuilder().desc(carro.get("valorDiaria"));
+
+		criteriaQuery.select(carro);
+		//Adicionando ordem
+		criteriaQuery.orderBy(order);
+		
+		List<Carro> carros = getManager().createQuery(criteriaQuery).getResultList();
+		
+		for (Carro carro2 : carros) {
+			System.out.println("Placa: " + carro2.getPlaca() + " - " + carro2.getValorDiaria());
+		}
 	}
 
 }
