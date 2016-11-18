@@ -7,6 +7,7 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -26,7 +27,7 @@ import javax.persistence.TemporalType;
 @Entity
 @Table(name = "carros")
 @NamedQueries({
-	@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c"),
+	@NamedQuery(name = "Carro.buscarTodos", query = "select c from Carro c inner join fetch c.modeloCarro"),
 	@NamedQuery(name = "Carro.buscarCarroComAcessorios", query = "select c from Carro c join c.acessorios where c.codigo = :codigo")
 })
 public class Carro implements Serializable {
@@ -79,7 +80,7 @@ public class Carro implements Serializable {
 		this.valorDiaria = valorDiaria;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "codigo_modelo")
 	public ModeloCarro getModeloCarro() {
 		return modeloCarro;
@@ -89,7 +90,7 @@ public class Carro implements Serializable {
 		this.modeloCarro = modeloCarro;
 	}
 
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY)
 	@JoinTable(
 			name = "carro_acessorios", 
 			joinColumns = @JoinColumn(name = "codigo_carro"), 
