@@ -39,7 +39,7 @@
 	    		</p:selectOneMenu>
 			    
 			    <p:outputLabel value="Placa" for="placa"/>
-			    <p:inputText id="placa" size="20" maxlength="20" value="#{cadastroCarroBean.carro.placa}"/>
+			    <p:inputMask id="placa" size="20" maxlength="20" value="#{cadastroCarroBean.carro.placa}" mask="aa*-9999"/>
 			    		
 			    <p:outputLabel value="Cor" for="cor"/>
 			    <p:inputText id="cor" size="20" maxlength="20" value="#{cadastroCarroBean.carro.cor}"/>

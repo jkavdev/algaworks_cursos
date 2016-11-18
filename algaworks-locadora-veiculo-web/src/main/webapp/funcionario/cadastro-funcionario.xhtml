@@ -44,10 +44,10 @@
 				</p:selectOneMenu>					    		
 	    		
 	    		<p:outputLabel value="CPF" for="cpf"/>
-	    		<p:inputText id="cpf" size="20" maxlength="20" value="#{cadastroFuncionarioBean.funcionario.cpf}"/>
+	    		<p:inputMask id="cpf" size="20" maxlength="20" value="#{cadastroFuncionarioBean.funcionario.cpf}" mask="999-999-999-99"/>
 	    		
 	    		<p:outputLabel value="Matrícula" for="matricula"/>
-	    		<p:inputText id="matricula" size="20" maxlength="20" value="#{cadastroFuncionarioBean.funcionario.matricula}"/>
+	    		<p:inputMask id="matricula" size="20" maxlength="20" value="#{cadastroFuncionarioBean.funcionario.matricula}" mask="aaa*-9999"/>
 	    	</p:panelGrid>
     	</h:form>
     </ui:define>

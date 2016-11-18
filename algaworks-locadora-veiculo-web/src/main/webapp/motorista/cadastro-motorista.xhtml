@@ -45,10 +45,10 @@
 				</p:selectOneMenu>					    		
 	    		
 	    		<p:outputLabel value="CPF" for="cpf"/>
-	    		<p:inputText id="cpf" size="20" maxlength="20" value="#{cadastroMotoristaBean.motorista.cpf}"/>
+	    		<p:inputMask id="cpf" size="20" maxlength="20" value="#{cadastroMotoristaBean.motorista.cpf}" mask="999-999-999-99"/>
 	    		
 	    		<p:outputLabel value="CNH" for="cnh"/>
-	    		<p:inputText id="cnh" size="20" maxlength="20" value="#{cadastroMotoristaBean.motorista.numeroCNH}"/>
+	    		<p:inputMask id="cnh" size="20" maxlength="20" value="#{cadastroMotoristaBean.motorista.numeroCNH}" mask="9999999999"/>
 	    	</p:panelGrid>
     	</h:form>
     </ui:define>
