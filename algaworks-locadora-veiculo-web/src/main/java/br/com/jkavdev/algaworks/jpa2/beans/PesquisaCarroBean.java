@@ -1,6 +1,7 @@
 package br.com.jkavdev.algaworks.jpa2.beans;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -23,9 +24,10 @@ public class PesquisaCarroBean implements Serializable {
 	@Inject
 	private CarroDao carroDao;
 	
-	private List<Carro> carros;
-	private LazyCarroDataModel lazyCarros;
+	private List<Carro> carros = new ArrayList<>();
+	private LazyCarroDataModel lazyCarros;	
 	private Carro carroSelecionado;
+	private Carro carroSelecionadoParaExclusao;
 
 	@PostConstruct
 	public void init() {
@@ -34,8 +36,8 @@ public class PesquisaCarroBean implements Serializable {
 
 	public void excluir() {
 		try {
-			carroDao.excluir(carroSelecionado);
-			carros.remove(carroSelecionado);
+			carroDao.excluir(carroSelecionadoParaExclusao);
+			carros.remove(carroSelecionadoParaExclusao);
 			FacesUtil.addSuccessMessage("Carro removido com sucesso!");
 		} catch (NegocioException e) {
 			FacesUtil.addErrorMessage(e.getMessage());
@@ -44,6 +46,14 @@ public class PesquisaCarroBean implements Serializable {
 	
 	public void buscarCarroComAcessorios(){
 		carroSelecionado = carroDao.buscarCarroComAcessorios(carroSelecionado.getCodigo());
+	}
+	
+	public Carro getCarroSelecionadoParaExclusao() {
+		return carroSelecionadoParaExclusao;
+	}
+
+	public void setCarroSelecionadoParaExclusao(Carro carroSelecionadoParaExclusao) {
+		this.carroSelecionadoParaExclusao = carroSelecionadoParaExclusao;
 	}
 
 	public Carro getCarroSelecionado() {
