@@ -1,4 +1,4 @@
-package br.com.jkavdev.algaworks.jpa2.test.criteria;
+package br.com.jkavdev.algaworks.jpa2.test.criteria.carro;
 
 import java.util.List;
 
