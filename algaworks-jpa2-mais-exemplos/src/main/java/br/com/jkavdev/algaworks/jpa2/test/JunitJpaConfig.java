@@ -1,4 +1,4 @@
-package br.com.jkavdev.algaworks.jpa2.consultas;
+package br.com.jkavdev.algaworks.jpa2.test;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -30,6 +30,14 @@ public abstract class JunitJpaConfig {
 
 	public EntityManager getManager() {
 		return manager;
+	}
+
+	public void beginTransaction() {
+		this.manager.getTransaction().begin();
+	}
+
+	public void commit() {
+		this.manager.getTransaction().commit();
 	}
 
 }
