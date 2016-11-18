@@ -104,6 +104,7 @@ public class Carro implements Serializable {
 		this.acessorios = acessorios;
 	}
 
+//	@OneToMany(mappedBy = "carro", cascade = CascadeType.PERSIST, orphanRemoval = true)
 	@OneToMany(mappedBy = "carro")
 	public List<Aluguel> getAlugueis() {
 		return alugueis;

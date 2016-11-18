@@ -52,7 +52,18 @@ public class OperacoesEmCascata extends JunitJpaConfig {
 		getManager().persist(carro);
 
 		commit();
-
+	}
+	
+	@Test
+	public void excluirAlguelCarroOrphan(){
+		Carro carro = getManager().find(Carro.class, 9L);
+		
+		//Tentando excluir um objeto da lista de carro
+		//Neste caso precisariamos indicar que o objeto da lista pode ser excluido
+		//Fazemos isso com orphanRemoval=true, pois estamos retirando aquele aluguel de Carro
+		beginTransaction();
+		carro.getAlugueis().remove(0);
+		commit();
 	}
 
 	public Carro criaCarro(String cor, String placa) {
