@@ -1,8 +1,9 @@
-package br.com.jkavdev.algaworks.jpa2.test;
+package br.com.jkavdev.algaworks.jpa2.test.proprietario;
 
 import org.junit.Test;
 
 import br.com.jkavdev.algaworks.jpa2.modelos.Usuario;
+import br.com.jkavdev.algaworks.jpa2.test.JunitJpaConfig;
 
 public class TiposBasicos extends JunitJpaConfig {
 
