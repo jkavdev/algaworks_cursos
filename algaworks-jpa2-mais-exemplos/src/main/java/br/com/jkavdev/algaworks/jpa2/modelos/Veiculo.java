@@ -1,5 +1,6 @@
 package br.com.jkavdev.algaworks.jpa2.modelos;
 
+import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
@@ -11,6 +12,7 @@ public class Veiculo {
 	private VeiculoPK codigo;
 	private String fabricante;
 	private String modelo;
+	private Proprietario proprietario;
 
 	@EmbeddedId
 	public VeiculoPK getCodigo() {
@@ -35,6 +37,15 @@ public class Veiculo {
 
 	public void setModelo(String modelo) {
 		this.modelo = modelo;
+	}
+
+	@Embedded
+	public Proprietario getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Proprietario proprietario) {
+		this.proprietario = proprietario;
 	}
 
 	@Override
