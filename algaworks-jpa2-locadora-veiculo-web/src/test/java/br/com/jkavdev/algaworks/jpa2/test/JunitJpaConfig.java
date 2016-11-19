@@ -32,6 +32,14 @@ public abstract class JunitJpaConfig {
 	public EntityManager getManager() {
 		return manager;
 	}
+	
+	public void setManager(EntityManager manager) {
+		this.manager = manager;
+	}
+	
+	public static EntityManagerFactory getFactory() {
+		return factory;
+	}
 
 	public CriteriaBuilder getCriteriaBuilder() {
 		return this.manager.getCriteriaBuilder();
