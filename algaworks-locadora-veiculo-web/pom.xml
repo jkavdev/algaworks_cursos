@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>br.com.jkavdev.algaworks.jpa2</groupId>
-	<artifactId>algaworks-locadora-veiculo-web</artifactId>
+	<artifactId>algaworks-jpa2-locadora-veiculo-web</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 
 	<packaging>war</packaging>
