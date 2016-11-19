@@ -4,6 +4,7 @@ import javax.persistence.Embedded;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "veiculos")
@@ -46,6 +47,11 @@ public class Veiculo {
 
 	public void setProprietario(Proprietario proprietario) {
 		this.proprietario = proprietario;
+	}
+
+	@Transient
+	public String descricao() {
+		return "Placa: " + codigo.getPlaca() + ". Fabricante: " + getFabricante() + ". Modelo: " + getModelo();
 	}
 
 	@Override
