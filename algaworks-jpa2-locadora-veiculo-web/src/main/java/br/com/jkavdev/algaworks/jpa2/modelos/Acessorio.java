@@ -9,6 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Table(name = "acessorios")
 public class Acessorio implements Serializable {
@@ -28,6 +30,7 @@ public class Acessorio implements Serializable {
 		this.codigo = codigo;
 	}
 
+	@NotBlank(message = "A descrição deve ser informada")
 	@Column(name = "descricao_acessorio")
 	public String getDescricao() {
 		return descricao;
