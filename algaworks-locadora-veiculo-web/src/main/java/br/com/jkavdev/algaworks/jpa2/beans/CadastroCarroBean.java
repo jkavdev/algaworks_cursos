@@ -8,6 +8,8 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import org.primefaces.model.UploadedFile;
+
 import br.com.jkavdev.algaworks.jpa2.daos.AcessorioDao;
 import br.com.jkavdev.algaworks.jpa2.daos.ModeloCarroDao;
 import br.com.jkavdev.algaworks.jpa2.modelos.Acessorio;
@@ -32,6 +34,7 @@ public class CadastroCarroBean implements Serializable {
 
 	private List<ModeloCarro> modeloCarros;
 	private List<Acessorio> acessorios;
+	private UploadedFile uploadedFile;
 
 	@Inject
 	private Carro carro;
@@ -44,6 +47,11 @@ public class CadastroCarroBean implements Serializable {
 
 	public void salvar() {
 		try {
+			
+			if(uploadedFile != null){
+				this.carro.setFoto(uploadedFile.getContents());
+			}
+			
 			carroService.salvar(carro);
 			FacesUtil.addSuccessMessage("Carro salvo com sucesso!");
 			limpaFormulario();
@@ -70,6 +78,14 @@ public class CadastroCarroBean implements Serializable {
 
 	public void setCarro(Carro carro) {
 		this.carro = carro;
+	}
+
+	public UploadedFile getUploadedFile() {
+		return uploadedFile;
+	}
+
+	public void setUploadedFile(UploadedFile uploadedFile) {
+		this.uploadedFile = uploadedFile;
 	}
 
 }
