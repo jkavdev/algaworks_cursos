@@ -11,6 +11,7 @@ import br.com.jkavdev.algaworks.jpa2.test.JunitJpaConfig;
 
 public class ConsultasNativas extends JunitJpaConfig {
 
+	@SuppressWarnings("unchecked")
 	@Test
 	public void consultaNativa() {
 		Query nativeQuery = getManager().createNativeQuery("select * from Carros", Carro.class);

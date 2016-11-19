@@ -54,6 +54,10 @@ public class CarroDao implements Serializable {
 		return this.entityManager.createQuery("select count(c) from Carro c", Long.class)
 				.getSingleResult();
 	}
+	
+	public void setEntityManager(EntityManager entityManager) {
+		this.entityManager = entityManager;
+	}
 
 	// select * from carro limit 4 - trara apenas 4 resultados
 	// select * from carro limit 4,2 - trara 2 resultados a partir do 5 resultado
