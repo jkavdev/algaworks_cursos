@@ -9,6 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 import br.com.jkavdev.algaworks.spring.wine.model.TipoVinho;
 import br.com.jkavdev.algaworks.spring.wine.model.Vinho;
 import br.com.jkavdev.algaworks.spring.wine.repository.Vinhos;
+import br.com.jkavdev.algaworks.spring.wine.service.VinhoService;
 
 @Controller
 @RequestMapping("/vinhos")
@@ -16,6 +17,8 @@ public class VinhosController {
 
 	@Autowired
 	private Vinhos vinhos;
+	@Autowired
+	private VinhoService vinhoService;
 
 	@RequestMapping
 	public ModelAndView pesquisa() {
@@ -36,10 +39,10 @@ public class VinhosController {
 	}
 
 	@RequestMapping(value = "/novo", method = RequestMethod.POST)
-	public ModelAndView salvar(Vinho vinho) {
-		ModelAndView modelAndView = new ModelAndView();
+	public ModelAndView salvar(Vinho vinho) {		
+		vinhoService.salvar(vinho);
 
-		return modelAndView;
+		return new ModelAndView("redirect:/vinhos/novo");
 	}
 
 }

@@ -49,7 +49,7 @@
 				<tbody>
 					<tr th:each="vinho: ${vinhos}">
 						<td th:text="${vinho.codigo}"></td>
-						<td ><a th:href="#" th:text="${vinho.nome}"></a></td>
+						<td ><a  th:text="${vinho.nome}"></a></td>
 						<td th:text="${vinho.tipo.descricao}"></td>
 						<td th:text="${vinho.safra}"></td>
 						<td th:text="${vinho.volume}"></td>
