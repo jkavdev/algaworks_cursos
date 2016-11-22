@@ -20,8 +20,10 @@ public class FotosController {
 
 	@RequestMapping(value = "{codigo}", method = RequestMethod.POST)
 	// @RequestParam("files[]") - nome da variável do UIkit fornece por parâmetro
-	public Foto upload(@PathVariable Long codigo, @RequestParam("files[]") MultipartFile[] files) {		
-		return new Foto(vinhoService.adicionarFoto(codigo, files[0]));
+	public Foto upload(@PathVariable Long codigo, @RequestParam("files[]") MultipartFile[] files) {
+		String url = vinhoService.adicionarFoto(codigo, files[0]);
+		
+		return new Foto(url);
 	}
 
 }

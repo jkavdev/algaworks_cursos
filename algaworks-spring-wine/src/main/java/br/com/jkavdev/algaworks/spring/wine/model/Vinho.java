@@ -9,9 +9,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.thymeleaf.util.StringUtils;
 
 @Entity
 @Table(name = "vinhos")
@@ -24,6 +26,7 @@ public class Vinho {
 	private Integer volume;
 	private BigDecimal valor;
 	private String foto;
+	private String urlFoto;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -87,6 +90,19 @@ public class Vinho {
 
 	public void setFoto(String foto) {
 		this.foto = foto;
+	}
+
+	@Transient
+	public String getUrlFoto() {
+		return urlFoto;
+	}
+
+	public void setUrlFoto(String urlFoto) {
+		this.urlFoto = urlFoto;
+	}
+	
+	public boolean temFoto(){
+		return !StringUtils.isEmpty(foto);
 	}
 
 	@Override

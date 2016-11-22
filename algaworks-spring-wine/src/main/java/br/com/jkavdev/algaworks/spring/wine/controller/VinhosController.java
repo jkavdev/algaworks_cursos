@@ -15,6 +15,7 @@ import br.com.jkavdev.algaworks.spring.wine.model.TipoVinho;
 import br.com.jkavdev.algaworks.spring.wine.model.Vinho;
 import br.com.jkavdev.algaworks.spring.wine.repository.Vinhos;
 import br.com.jkavdev.algaworks.spring.wine.service.VinhoService;
+import br.com.jkavdev.algaworks.spring.wine.storage.FotoStorageS3;
 
 @Controller
 @RequestMapping("/vinhos")
@@ -24,6 +25,8 @@ public class VinhosController {
 	private Vinhos vinhos;
 	@Autowired
 	private VinhoService vinhoService;
+	@Autowired
+	private FotoStorageS3 fotoStorageS3;
 
 	@RequestMapping
 	public ModelAndView pesquisa() {
@@ -58,6 +61,11 @@ public class VinhosController {
 	@RequestMapping(value = "/{codigo}")
 	public ModelAndView visualizar(@PathVariable("codigo") Vinho vinho) {
 		ModelAndView modelAndView = new ModelAndView("/vinho/visualiza-vinho");
+
+		if (vinho.temFoto()) {
+			vinho.setUrlFoto(fotoStorageS3.getUrl(vinho.getFoto()));
+		}
+
 		modelAndView.addObject("vinho", vinho);
 
 		return modelAndView;

@@ -2,6 +2,7 @@ $(function() {
 	console.log('Página carregada');
 
 	uploadDrop = $('#upload-drop');
+	var containerFoto = $('.js-container-foto');
 
 	var settings = {
 		type : 'json',
@@ -10,6 +11,8 @@ $(function() {
 		action : '/fotos/' + uploadDrop.data('codigo'),
 		complete : function(foto) {
 			console.log('Resposta ', foto);
+			uploadDrop.addClass('hidden');
+			containerFoto.prepend('<img src="'+foto.url+'" class="img-responsive" style="margin: auto"/>')
 		}
 	};
 
