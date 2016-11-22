@@ -6,6 +6,7 @@
 
 <head>
 	<title th:text="${vinho.nome}"></title>
+	<link rel="stylesheet" type="text/css" th:href="@{/stylesheets/vendors/upload.min.css}"/>
 </head>
 
 <body>
@@ -20,7 +21,13 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-sm-9">
-					<div>Foto</div>
+					<div id="upload-frop" class="wn-upload">
+						<img th:src="@{/images/mockup-garrafa.png}" />
+						<div>
+							<span>Arraste a foto aqui ou</span>
+							<a class="wn-upload-form-file">selecione<input id="upload-select" type="file" accept=".jpg,.jpeg,.png"/></a>
+						</div>
+					</div>
 				</div>
 				<div class="col-sm-3">
 					<ul class="list-group">
@@ -33,5 +40,12 @@
 			</div>
 		</div>
 	</section>
+	
+	<th:block layout:fragment="javascript-extra">
+		<script th:src="@{/javascripts/vendors/uikit.min.js}"></script>
+		<script th:src="@{/javascripts/vendors/upload.min.js}"></script>
+		<script th:src="@{/javascripts/vinho-foto-upload.js}"></script>
+	</th:block>
+	
 </body>
 </html>
