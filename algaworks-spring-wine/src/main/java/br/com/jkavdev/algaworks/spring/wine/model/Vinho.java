@@ -9,6 +9,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 @Table(name = "vinhos")
@@ -31,6 +34,7 @@ public class Vinho {
 		this.codigo = codigo;
 	}
 
+	@NotBlank(message = "Nome obrigatório")
 	public String getNome() {
 		return nome;
 	}
@@ -39,6 +43,7 @@ public class Vinho {
 		this.nome = nome;
 	}
 
+	@NotNull(message = "Tipo obrigatório")
 	@Enumerated(EnumType.STRING)
 	public TipoVinho getTipo() {
 		return tipo;
@@ -48,6 +53,7 @@ public class Vinho {
 		this.tipo = tipo;
 	}
 
+	@NotNull(message = "Safra obrigatório")
 	public Integer getSafra() {
 		return safra;
 	}
@@ -56,6 +62,7 @@ public class Vinho {
 		this.safra = safra;
 	}
 
+	@NotNull(message = "Volume obrigatório")
 	public Integer getVolume() {
 		return volume;
 	}
@@ -64,6 +71,7 @@ public class Vinho {
 		this.volume = volume;
 	}
 
+	@NotNull(message = "Valor obrigatório")
 	public BigDecimal getValor() {
 		return valor;
 	}
