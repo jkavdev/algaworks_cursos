@@ -23,6 +23,7 @@ public class Vinho {
 	private Integer safra;
 	private Integer volume;
 	private BigDecimal valor;
+	private String foto;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -78,6 +79,14 @@ public class Vinho {
 
 	public void setValor(BigDecimal valor) {
 		this.valor = valor;
+	}
+
+	public String getFoto() {
+		return foto;
+	}
+
+	public void setFoto(String foto) {
+		this.foto = foto;
 	}
 
 	@Override
