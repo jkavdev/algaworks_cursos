@@ -47,9 +47,9 @@ public class VinhosController {
 		if (result.hasErrors()) {
 			return novo(vinho);
 		}
-
-		vinhoService.salvar(vinho);
 		
+		vinhoService.salvar(vinho);
+
 		attributes.addFlashAttribute("mensagem", "Vinho salvo com sucesso!");
 
 		return new ModelAndView("redirect:/vinhos/novo");
