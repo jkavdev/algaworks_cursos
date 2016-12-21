@@ -23,7 +23,7 @@ public class ModeloCarroDao implements Serializable {
 	}
 
 	public List<ModeloCarro> buscarTodos() {
-		return this.entityManager.createQuery("select m from ModeloCarro m join fetch m.fabricante", ModeloCarro.class).getResultList();
+		return this.entityManager.createQuery("from ModeloCarro", ModeloCarro.class).getResultList();
 	}
 
 	public ModeloCarro buscarPeloCodigo(Long codigo) {
