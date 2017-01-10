@@ -28,27 +28,31 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<button class="close" type="button" data-dismiss>
+						<button type="button" class="close" data-dismiss="modal">
 							<span>&times;</span>
-							<h4 class="modal-title">Novo Livro</h4>
 						</button>
-						<form action="/livros" method="post">
-							<div class="modal-body">
-								<div class="form-group">
-									<label for="titulo">Título</label>
-									<input type="text" class="form-control" id="titulo" placeholder="Título">
-								</div>
-								<div class="form-group">
-									<label for="autor">Autor</label>
-									<input type="text" class="form-control" id="autor" placeholder="Autor">
-								</div>
-								<div class="form-group">
-									<label for="nota">Nota</label>
-									<textarea class="form-control" id="nota" rows="3"></textarea>
-								</div>
-							</div>
-						</form>
+						<h4 class="modal-title">Novo livro</h4>
 					</div>
+					<form action="/livros" method="POST">
+						<div class="modal-body">
+								<div class="form-group">
+	    							<label for="titulo">Título</label>
+	    							<input type="text" class="form-control" id="titulo" placeholder="Título" name="titulo">
+	  							</div>
+								<div class="form-group">
+								    <label for="autor">Autor</label>
+								    <input type="text" class="form-control" id="autor" placeholder="Autor" name="autor">
+								</div>
+								<div class="form-group">
+								    <label for="nota">Nota</label>
+								    <textarea class="form-control" rows="3" id="nota" name="nota"></textarea>
+								</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+							<button type="submit" class="btn btn-primary">Adicionar</button>
+						</div>
+					</form>
 				</div>
 			</div>
 		</div>
