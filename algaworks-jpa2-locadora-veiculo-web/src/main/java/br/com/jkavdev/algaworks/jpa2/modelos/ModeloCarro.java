@@ -52,7 +52,7 @@ public class ModeloCarro implements Serializable {
 		this.descricao = descricao;
 	}
 
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name = "codigo_fabricante")
 	public Fabricante getFabricante() {
 		return fabricante;
