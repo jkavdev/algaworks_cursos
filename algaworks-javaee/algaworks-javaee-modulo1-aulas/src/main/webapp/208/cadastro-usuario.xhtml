@@ -1,0 +1,60 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script>
+		PrimeFaces.locales['pt'] = {
+			    closeText: 'Fechar',
+			    prevText: 'Anterior',
+			    nextText: 'Próximo',
+			    currentText: 'Começo',
+			    monthNames: ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'],
+			    monthNamesShort: ['Jan','Fev','Mar','Abr','Mai','Jun', 'Jul','Ago','Set','Out','Nov','Dez'],
+			    dayNames: ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'],
+			    dayNamesShort: ['Dom','Seg','Ter','Qua','Qui','Sex','Sáb'],
+			    dayNamesMin: ['D','S','T','Q','Q','S','S'],
+			    weekHeader: 'Semana',
+			    firstDay: 0,
+			    isRTL: false,
+			    showMonthAfterYear: false,
+			    yearSuffix: '',
+			    timeOnlyTitle: 'Só Horas',
+			    timeText: 'Tempo',
+			    hourText: 'Hora',
+			    minuteText: 'Minuto',
+			    secondText: 'Segundo',
+			    ampm: false,
+			    month: 'Mês',
+			    week: 'Semana',
+			    day: 'Dia',
+			    allDayText : 'Todo o Dia'
+			};
+		</script>
+	
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Login" for="login" />
+			<p:inputText id="login" required="true" value="#{perfilUsuarioCalendarBean.login}" />
+			
+			<p:outputLabel value="Data de nascimento" for="dataNascimento" />
+			<p:calendar id="dataNascimento" required="true" value="#{perfilUsuarioCalendarBean.dataNascimento}"
+				pattern="dd/MM/yyyy" readonlyInput="true" navigator="true" 
+				maxdate="#{perfilUsuarioCalendarBean.dataHoje}"
+				pages="1" mode="popup" locale="pt"/>
+			
+		</p:panelGrid>
+		
+		<p:commandButton value="Cadastrar" action="#{perfilUsuarioCalendarBean.atualizar}" update="@form"/>
+	</h:form>
+</h:body>
+
+</html>
