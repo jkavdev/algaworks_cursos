@@ -1,0 +1,35 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<!-- Jsf Tags -->
+	<h:panelGrid columns="2">
+		<h:outputLabel value="Nome" />
+		<h:inputText />
+
+		<h:outputLabel value="Data de Nascimento" />
+		<h:inputText />
+	</h:panelGrid>
+
+	<h:commandButton value="Cadastrar" />
+
+	<!-- Primefaces tags -->
+	<p:panelGrid columns="2">
+		<p:outputLabel value="Nome" />
+		<p:inputText />
+
+		<p:outputLabel value="Data de Nascimento" />
+		<p:calendar />
+	</p:panelGrid>
+
+	<p:commandButton value="Cadastrar" />
+</h:body>
+
+</html>
