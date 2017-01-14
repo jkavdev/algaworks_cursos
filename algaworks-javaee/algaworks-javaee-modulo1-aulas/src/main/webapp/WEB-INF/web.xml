@@ -6,6 +6,13 @@
 
 	<display-name>algaworks-javaee-primeiro-projeto-primefaces</display-name>
 
+	<!-- Indicando ao primefaces que o submit será parcial -->
+	<!-- Não sendo necessário indicar no componente que será partialSubmit -->
+	<context-param>
+		<param-name>primefaces.SUBMIT</param-name>
+		<param-value>partial</param-value>
+	</context-param>
+
 	<servlet>
 		<servlet-name>Faces Servlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -15,4 +22,5 @@
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+
 </web-app>
