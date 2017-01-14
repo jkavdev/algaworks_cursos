@@ -1,0 +1,32 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<h:form id="frm">
+		<p:panelGrid columns="2" id="pnl">
+			<f:facet name="header">Cadastro de Pessoas</f:facet>
+
+			<h:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" value="#{inversaoNomeBean.nome}">
+				<p:ajax listener="#{inversaoNomeBean.inverter}"
+					update=":frm2:nomeInvertido" event="keyup" />
+			</p:inputText>
+		</p:panelGrid>
+	</h:form>
+
+	<br />
+
+	<h:form id="frm2">
+		<h:outputText value="#{inversaoNomeBean.nomeInvertido}"
+			id="nomeInvertido" />
+	</h:form>
+</h:body>
+
+</html>
