@@ -1,0 +1,38 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<f:facet name="header">Cadastro de Pessoas</f:facet>
+
+			<h:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" required="true" label="Nome" value="#{cadastroAlunoBean.nome}"/>
+
+			<p:outputLabel value="E-mail" for="email" />
+			<p:inputText id="email" required="true" value="#{cadastroAlunoBean.email}"/>
+
+			<h:outputLabel value="Data de Nascimento" for="nascimento" />
+			<p:calendar id="nascimento" required="true" />
+
+			<p:outputLabel value="Data de validade" for="validade" />
+			<p:calendar id="validade" required="true" />
+
+			<f:facet name="footer">
+				<p:commandButton value="Cadastrar" ajax="false" icon="ui-icon-disk"
+					iconPos="right" action="#{cadastroAlunoBean.cadastrar}"/>
+			</f:facet>
+		</p:panelGrid>
+	</h:form>
+</h:body>
+
+</html>
