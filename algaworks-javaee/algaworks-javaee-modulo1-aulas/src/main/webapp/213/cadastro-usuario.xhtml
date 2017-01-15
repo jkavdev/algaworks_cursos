@@ -1,0 +1,62 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<style>
+		.sem-bordas td {
+			border: none;
+			padding: 5px;
+		}
+		
+		.cel-radio td {
+			text-align: center;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Nome" for="nome" />
+			<p:inputText id="nome" required="true" value="#{perfilUsuarioAjaxOneSelectBean.nome}" />
+
+			<p:outputLabel value="Sexo" for="sexo" />
+			<p:selectOneRadio id="sexo" value="#{perfilUsuarioOneRadioBean.sexo}"
+				 required="true" styleClass="sem-bordas" layout="lineDirection">
+				<f:selectItem itemLabel="Masculino" itemValue="M"/>
+				<f:selectItem itemLabel="Feminino" itemValue="F"/>				
+			</p:selectOneRadio>
+			
+			<p:outputLabel value="Estado Cívil" for="estadoCivil" />
+			<h:panelGroup>
+				<p:selectOneRadio id="estadoCivil" value="#{perfilUsuarioOneRadioBean.estadoCivil}"
+					 required="true" layout="custom">
+					<f:selectItem itemValue="divorciado"/>
+					<f:selectItem itemValue="casado"/>
+					<f:selectItem itemValue="solteiro"/>				
+				</p:selectOneRadio>
+				
+				<h:panelGrid columns="3" styleClass="sem-bordas" rowClasses="cel-radio">
+					<p:radioButton id="opt1" for="estadoCivil" itemIndex="0"/>
+					<p:radioButton id="opt2" for="estadoCivil" itemIndex="1"/>
+					<p:radioButton id="opt3" for="estadoCivil" itemIndex="2"/>
+					
+					<p:outputLabel value="Divorciado" for="opt1" />
+					<p:outputLabel value="Casado" for="opt2" />
+					<p:outputLabel value="Solteiro" for="opt3" />
+				</h:panelGrid>
+			</h:panelGroup>
+		</p:panelGrid>
+
+		<p:commandButton value="Cadastrar" action="#{perfilUsuarioOneRadioBean.atualizar}" update="@form" />
+	</h:form>
+</h:body>
+
+</html>
