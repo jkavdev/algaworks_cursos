@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Login" for="login" />
+			<p:inputText id="login" required="true" value="#{perfilUsuarioAutoCompleteBean.nome}" />
+
+			<p:outputLabel value="País" for="pais" />
+			<p:autoComplete id="pais" value="#{perfilUsuarioAutoCompleteBean.pais}" required="true"
+				completeMethod="#{perfilUsuarioAutoCompleteBean.sugerirPaises}" 
+				forceSelection="true" minQueryLength="2" dropdown="true"/>
+		</p:panelGrid>
+
+		<p:commandButton value="Cadastrar" action="#{perfilUsuarioAutoCompleteBean.atualizar}" update="@form" />
+	</h:form>
+</h:body>
+
+</html>
