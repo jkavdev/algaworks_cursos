@@ -1,0 +1,40 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	
+	<style>
+		.sem-bordas td {
+			border: none;
+			padding: 5px;
+		}
+	</style>
+</h:head>
+
+<h:body>
+	<h:form>
+		<p:messages />
+
+		<p:panelGrid columns="2">
+			<p:outputLabel value="Login" for="login" />
+			<p:inputText id="login" required="true" value="#{perfilUsuarioManyCheckboxBean.nome}" />
+
+			<p:outputLabel value="Interesse" for="interesse" />
+			<p:selectManyCheckbox id="interesse" value="#{perfilUsuarioManyCheckboxBean.interesses}"
+				 required="true" styleClass="sem-bordas" layout="pageDirection">
+				<f:selectItem itemLabel="Esporte" itemValue="esporte"/>
+				<f:selectItem itemLabel="Computação" itemValue="computacao"/>
+				<f:selectItem itemLabel="Cinema" itemValue="cinema"/>
+				<f:selectItem itemLabel="Leitura" itemValue="leitura"/>				
+			</p:selectManyCheckbox>
+		</p:panelGrid>
+
+		<p:commandButton value="Cadastrar" action="#{perfilUsuarioManyCheckboxBean.atualizar}" update="@form" />
+	</h:form>
+</h:body>
+
+</html>
