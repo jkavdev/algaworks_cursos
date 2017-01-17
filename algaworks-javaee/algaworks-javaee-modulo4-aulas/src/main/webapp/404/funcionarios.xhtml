@@ -1,0 +1,39 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</h:head>
+
+<h:body>
+	<h:form id="frm">
+		<p:dataTable value="#{funcionariosOrdenacaoBean.funcionarios}" var="funcionario"
+			sortBy="#{funcionario.matricula}" sortOrder="descending">
+			<p:column headerText="Matrícula" style="text-align: center;" width="90"
+				sortBy="#{funcionario.matricula}">
+				<h:outputText value="#{funcionario.matricula}" />
+			</p:column>
+			<p:column headerText="Nome"
+				sortBy="#{funcionario.nome}">
+				<h:outputText value="#{funcionario.nome}" />
+			</p:column>
+			<p:column headerText="Data de admissão" style="text-align: center;" width="180"
+				sortBy="#{funcionario.dataAdmissao}">
+				<h:outputText value="#{funcionario.dataAdmissao}" >
+					<f:convertDateTime pattern="dd/MM/yyyy"/>
+				</h:outputText>
+			</p:column>
+			<p:column headerText="Salário" style="text-align: right;" 
+				sortBy="#{funcionario.salario}">
+				<h:outputText value="#{funcionario.salario}" >
+					<f:convertNumber type="currency" locale="pt_BR"/>
+				</h:outputText>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+</h:body>
+
+</html>
