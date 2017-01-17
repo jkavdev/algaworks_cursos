@@ -1,0 +1,19 @@
+package br.com.jkavdev.algaworks.javaee.aula402;
+
+import java.io.Serializable;
+import java.util.Date;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
+
+@ManagedBean
+@ViewScoped
+public class DataBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	public Date getDataAtual() {
+		return new Date();
+	}
+
+}

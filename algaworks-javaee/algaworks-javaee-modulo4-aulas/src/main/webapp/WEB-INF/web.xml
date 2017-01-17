@@ -6,11 +6,10 @@
 
 	<display-name>algaworks-javaee-primeiro-projeto-primefaces</display-name>
 
-	<!-- Indicando ao primefaces que o submit será parcial -->
-	<!-- Não sendo necessário indicar no componente que será partialSubmit -->
+	<!-- Indicando que será usado o horário do sistema -->
 	<context-param>
-		<param-name>primefaces.SUBMIT</param-name>
-		<param-value>partial</param-value>
+		<param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
+		<param-value>true</param-value>
 	</context-param>
 
 	<servlet>
