@@ -2,7 +2,9 @@ package br.com.jkavdev.algaworks.javaee.aula804.request;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.Dependent;
+import javax.inject.Named;
 
+@Named("calculadoraPrecoRequest")
 @Dependent
 public class CalculadoraPreco {
 

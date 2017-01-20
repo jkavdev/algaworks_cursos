@@ -1,7 +1,9 @@
 package br.com.jkavdev.algaworks.javaee.aula804.session;
 
 import javax.annotation.PostConstruct;
+import javax.inject.Named;
 
+@Named("calculadoraPrecoSession")
 public class CalculadoraPreco {
 
 	@PostConstruct

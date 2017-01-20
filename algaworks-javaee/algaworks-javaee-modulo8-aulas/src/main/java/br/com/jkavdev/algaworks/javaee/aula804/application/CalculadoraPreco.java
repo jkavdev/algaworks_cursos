@@ -2,7 +2,9 @@ package br.com.jkavdev.algaworks.javaee.aula804.application;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 
+@Named("calculadoraPrecoApplication")
 @ApplicationScoped
 public class CalculadoraPreco {
 
