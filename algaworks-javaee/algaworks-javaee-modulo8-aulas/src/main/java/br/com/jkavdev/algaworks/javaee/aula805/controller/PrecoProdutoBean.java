@@ -7,7 +7,7 @@ import javax.inject.Named;
 
 import br.com.jkavdev.algaworks.javaee.aula805.service.CalculadoraPreco;
 
-@Named
+@Named("precoProdutoInjection")
 public class PrecoProdutoBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
