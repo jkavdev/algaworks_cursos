@@ -7,7 +7,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import br.com.jkavdev.algaworks.javaee.aula803.service.CalculadoraPreco;
+import br.com.jkavdev.algaworks.javaee.aula804.session.CalculadoraPreco;
 
 @Named("precoProdutoSessionBean")
 @SessionScoped
