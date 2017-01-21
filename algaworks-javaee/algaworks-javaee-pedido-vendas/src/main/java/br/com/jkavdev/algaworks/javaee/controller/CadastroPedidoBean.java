@@ -4,10 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
-@ManagedBean
+import br.com.jkavdev.algaworks.javaee.service.NegocioException;
+
+@Named
 @ViewScoped
 public class CadastroPedidoBean implements Serializable {
 
@@ -18,6 +20,10 @@ public class CadastroPedidoBean implements Serializable {
 	public CadastroPedidoBean() {
 		itens = new ArrayList<Integer>();
 		itens.add(1);
+	}
+
+	public void salvar() {
+		throw new NegocioException("Exceção Negocio: cadastro de pedidos não implementado");
 	}
 
 	public List<Integer> getItens() {
