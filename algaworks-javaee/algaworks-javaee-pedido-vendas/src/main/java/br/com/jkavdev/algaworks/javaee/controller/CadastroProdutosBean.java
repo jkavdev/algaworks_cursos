@@ -1,14 +1,30 @@
 package br.com.jkavdev.algaworks.javaee.controller;
 
-import javax.enterprise.context.RequestScoped;
+import java.io.Serializable;
+
+import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 
+import br.com.jkavdev.algaworks.javaee.model.Produto;
+
 @Named
-@RequestScoped
-public class CadastroProdutosBean {
+@ViewScoped
+public class CadastroProdutosBean implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
+	private Produto produto;
+
+	public CadastroProdutosBean() {
+		produto = new Produto();
+	}
 
 	public void cadastrar() {
-		throw new RuntimeException();
+
+	}
+
+	public Produto getProduto() {
+		return produto;
 	}
 
 }
