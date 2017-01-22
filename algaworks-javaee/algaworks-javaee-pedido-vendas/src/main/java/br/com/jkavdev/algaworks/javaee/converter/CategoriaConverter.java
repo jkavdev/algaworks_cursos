@@ -23,6 +23,7 @@ public class CategoriaConverter implements Converter {
 		Categoria retorno = null;
 
 		if (value != null) {
+			System.out.println("getAsObject....");
 			retorno = categorias.porId(new Long(value));
 		}
 
