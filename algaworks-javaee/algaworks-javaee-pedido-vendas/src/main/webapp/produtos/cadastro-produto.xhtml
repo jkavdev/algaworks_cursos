@@ -24,7 +24,7 @@
 			<p:toolbar style="margin-top: 20px"> 
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/cadastro-produto" />
-					<p:commandButton id="botaoSalvar" value="Salvar" action="#{cadastroProdutosBean.inicializar}"
+					<p:commandButton id="botaoSalvar" value="Salvar" action="#{cadastroProdutosBean.salvar}"
 						ajax="true"/>
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
@@ -41,7 +41,7 @@
 				<p:inputText id="nome" size="60" maxlength="80" value="#{cadastroProdutosBean.produto.nome}"/>
 	
 				<p:outputLabel value="Categoria" for="categoria" />
-				<p:selectOneMenu id="categoria">
+				<p:selectOneMenu id="categoria" value="#{cadastroProdutosBean.categoriaPai}">
 					<f:selectItem itemLabel="Selecione a categoria" />
 					<f:selectItems value="#{cadastroProdutosBean.categoriasRaizes}" var="categoria"
 						itemValue="#{categoria}" itemLabel="#{categoria.descricao}"/>
