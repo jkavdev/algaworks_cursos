@@ -17,6 +17,8 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import br.com.jkavdev.algaworks.javaee.validation.SKU;
+
 @Entity
 @Table(name = "produto")
 public class Produto implements Serializable {
@@ -52,6 +54,8 @@ public class Produto implements Serializable {
 	}
 
 	@NotBlank	
+	// @Pattern(regexp = "([a-zA-Z]{2}\\d{4,18})?")
+	@SKU
 	@Column(nullable = false, length = 20, unique = true)
 	public String getSku() {
 		return sku;
