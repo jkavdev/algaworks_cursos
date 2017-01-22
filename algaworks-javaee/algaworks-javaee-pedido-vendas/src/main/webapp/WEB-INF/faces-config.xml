@@ -6,6 +6,9 @@
 	version="2.1">
 
 	<application>
+		<message-bundle>
+			br.com.jkavdev.algaworks.pedidovenda.messages
+		</message-bundle>
 		<locale-config>
 			<default-locale>pt_BR</default-locale>
 		</locale-config>
