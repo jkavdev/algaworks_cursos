@@ -61,7 +61,7 @@ public class Produto implements Serializable {
 		this.sku = sku == null ? null : sku.toUpperCase();
 	}
 
-	@NotNull
+	@NotNull(message = "é obrigatório")
 	@Column(name = "valor_unitario", nullable = false, precision = 10, scale = 2)
 	public BigDecimal getValorUnitario() {
 		return valorUnitario;
@@ -73,7 +73,7 @@ public class Produto implements Serializable {
 
 	@NotNull
 	@Min(0)
-	@Max(9999)
+	@Max(value = 9999, message = "tem um valor muito alto")
 	@Column(name = "quantidade_estoque", nullable = false, length = 5)
 	public Integer getQuantidadeEstoque() {
 		return quantidadeEstoque;
