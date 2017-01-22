@@ -6,6 +6,7 @@ import javax.inject.Inject;
 
 import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.repository.Produtos;
+import br.com.jkavdev.algaworks.javaee.util.jpa.Transactional;
 
 public class CadastroProdutoService implements Serializable {
 
@@ -14,6 +15,7 @@ public class CadastroProdutoService implements Serializable {
 	@Inject
 	private Produtos produtos;
 
+	@Transactional
 	public Produto salvar(Produto produto) {
 		System.out.println("porSku....");
 		Produto produtoExistente = produtos.porSku(produto.getSku());
