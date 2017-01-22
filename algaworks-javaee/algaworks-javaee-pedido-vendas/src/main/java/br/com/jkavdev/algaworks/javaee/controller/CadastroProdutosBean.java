@@ -6,10 +6,10 @@ import java.util.List;
 import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.persistence.EntityManager;
 
 import br.com.jkavdev.algaworks.javaee.model.Categoria;
 import br.com.jkavdev.algaworks.javaee.model.Produto;
+import br.com.jkavdev.algaworks.javaee.repository.Categorias;
 
 @Named
 @ViewScoped
@@ -18,7 +18,7 @@ public class CadastroProdutosBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EntityManager manager;
+	private Categorias categorias;
 
 	private Produto produto;
 	private List<Categoria> categoriasRaizes;
@@ -29,7 +29,7 @@ public class CadastroProdutosBean implements Serializable {
 
 	public void inicializar() {
 		System.out.println("Inicializando.....");
-		categoriasRaizes = manager.createQuery("from Categoria", Categoria.class).getResultList();
+		categoriasRaizes = categorias.raizes();
 	}
 
 	public void cadastrar() {
