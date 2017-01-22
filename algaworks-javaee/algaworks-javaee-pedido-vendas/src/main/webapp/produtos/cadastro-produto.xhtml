@@ -25,7 +25,7 @@
 				<p:toolbarGroup>
 					<p:button value="Novo" outcome="/produtos/cadastro-produto" />
 					<p:commandButton id="botaoSalvar" value="Salvar" action="#{cadastroProdutosBean.salvar}"
-						ajax="true"/>
+						ajax="true" update="@form"/>
 				</p:toolbarGroup>
 				<p:toolbarGroup align="right">
 					<p:button value="Pesquisa" outcome="/produtos/pesquisa-produtos"/>

@@ -1,6 +1,7 @@
 package br.com.jkavdev.algaworks.javaee.controller;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.bean.ViewScoped;
@@ -11,6 +12,7 @@ import javax.validation.constraints.NotNull;
 import br.com.jkavdev.algaworks.javaee.model.Categoria;
 import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.repository.Categorias;
+import br.com.jkavdev.algaworks.javaee.service.CadastroProdutoService;
 import br.com.jkavdev.algaworks.javaee.util.jsf.FacesUtil;
 
 @Named
@@ -21,6 +23,8 @@ public class CadastroProdutosBean implements Serializable {
 
 	@Inject
 	private Categorias categorias;
+	@Inject
+	private CadastroProdutoService cadastroProdutoService;
 
 	private Produto produto;
 	private Categoria categoriaPai;
@@ -29,7 +33,7 @@ public class CadastroProdutosBean implements Serializable {
 	private List<Categoria> subcategorias;
 
 	public CadastroProdutosBean() {
-		produto = new Produto();
+		limpar();
 	}
 
 	public void inicializar() {
@@ -38,15 +42,23 @@ public class CadastroProdutosBean implements Serializable {
 			categoriasRaizes = categorias.raizes();
 		}
 	}
-	
-	public void carregarSubcategorias(){
+
+	public void carregarSubcategorias() {
 		System.out.println("carregarSubcategorias....");
 		subcategorias = categorias.subcategoriasDe(categoriaPai);
 	}
 
+	private void limpar() {
+		produto = new Produto();
+		categoriaPai = null;
+		subcategorias = new ArrayList<>();
+	}
+
 	public void salvar() {
-		System.out.println("Categoria pai selecionada: " + categoriaPai.getDescricao());
-		System.out.println("Categoria selecionada: " + produto.getCategoria().getDescricao());
+		produto = cadastroProdutoService.salvar(produto);
+		limpar();
+
+		FacesUtil.addInfoMessagem("Produto salvo com sucesso!");
 	}
 
 	public Produto getProduto() {
