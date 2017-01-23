@@ -6,6 +6,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import javax.persistence.PersistenceException;
 
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
@@ -16,6 +17,8 @@ import org.hibernate.criterion.Restrictions;
 
 import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.repository.filter.ProdutoFilter;
+import br.com.jkavdev.algaworks.javaee.service.NegocioException;
+import br.com.jkavdev.algaworks.javaee.util.jpa.Transactional;
 
 public class Produtos implements Serializable {
 
@@ -56,6 +59,18 @@ public class Produtos implements Serializable {
 
 	public Produto porId(Long id) {
 		return manager.find(Produto.class, id);
+	}
+	
+	@Transactional
+	public void remover(Produto produto) {
+		try {
+			produto = porId(produto.getId());
+
+			manager.remove(produto);
+			manager.flush();
+		} catch (PersistenceException e) {
+			throw new NegocioException("Produto não pode ser excluído.");
+		}
 	}
 
 }

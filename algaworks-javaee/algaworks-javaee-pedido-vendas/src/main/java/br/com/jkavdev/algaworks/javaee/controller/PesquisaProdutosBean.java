@@ -10,6 +10,7 @@ import javax.inject.Named;
 import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.repository.Produtos;
 import br.com.jkavdev.algaworks.javaee.repository.filter.ProdutoFilter;
+import br.com.jkavdev.algaworks.javaee.util.jsf.FacesUtil;
 
 @Named
 @ViewScoped
@@ -20,7 +21,9 @@ public class PesquisaProdutosBean implements Serializable {
 	@Inject
 	private Produtos produtos;
 
+	private Produto produtoSelecionado;
 	private ProdutoFilter filtro;
+
 	private List<Produto> produtosFiltrados;
 
 	public PesquisaProdutosBean() {
@@ -29,6 +32,21 @@ public class PesquisaProdutosBean implements Serializable {
 
 	public void pesquisar() {
 		produtosFiltrados = produtos.filtrados(filtro);
+	}
+	
+	public void excluir(){
+		produtos.remover(produtoSelecionado);
+		produtosFiltrados.remove(produtoSelecionado);
+		
+		FacesUtil.addInfoMessagem("Produto " + produtoSelecionado.getSku() + " excluído com sucesso");
+	}
+
+	public Produto getProdutoSelecionado() {
+		return produtoSelecionado;
+	}
+
+	public void setProdutoSelecionado(Produto produtoSelecionado) {
+		this.produtoSelecionado = produtoSelecionado;
 	}
 
 	public ProdutoFilter getFiltro() {
