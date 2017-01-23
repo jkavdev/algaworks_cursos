@@ -3,9 +3,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui"
 	template="/WEB-INF/template/template-padrao.xhtml">
 
-	<ui:define name="titulo">Cadastro de Produtos</ui:define>
+	<ui:define name="titulo">#{cadastroProdutosBean.editando ? 'Edição de Produto' : 'Novo Produto'}</ui:define>
 
 	<ui:define name="corpo">
 	
@@ -13,11 +14,12 @@
 			<!-- Solução para que o método inicialiar não seja chamado várias vezes, 
 				vai saber o porque -->
 			<f:viewParam name="dummy"/>
+			<o:viewParam name="produto" value="#{cadastroProdutosBean.produto}" />
 			<f:event listener="#{cadastroProdutosBean.inicializar}" type="preRenderView" />
 		</f:metadata>
 	
 		<h:form>
-			<h1>Novo Produto</h1>
+			<h1>#{cadastroProdutosBean.editando ? 'Edição de Produto' : 'Novo Produto'}</h1>
 			
 			<p:messages autoUpdate="true" closable="true"/>
 	

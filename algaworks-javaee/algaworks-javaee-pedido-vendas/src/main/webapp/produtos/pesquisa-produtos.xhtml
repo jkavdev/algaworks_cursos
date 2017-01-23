@@ -10,6 +10,8 @@
 	<ui:define name="corpo">
 		<h:form>
 			<h1>Pesquisa de Produtos</h1>
+			
+			<p:messages autoUpdate="true" closable="true"/>
 	
 			<p:toolbar style="margin-top: 20px">
 				<p:toolbarGroup>
@@ -51,7 +53,9 @@
 					<h:outputText value="#{produto.quantidadeEstoque}" />
 				</p:column>
 				<p:column style="text-align: center; width: 100px;">
-					<p:button icon="ui-icon-pencil" title="Editar"/>
+					<p:button icon="ui-icon-pencil" title="Editar" outcome="/produtos/cadastro-produto">
+						<f:param name="produto" value="#{produto.id}"/>
+					</p:button>
 					<p:commandButton icon="ui-icon-trash" oncomplete="confirmacaoExclusao.show();" title="Excluir"/>
 				</p:column>
 			</p:dataTable>

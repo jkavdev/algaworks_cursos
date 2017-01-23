@@ -15,12 +15,13 @@ public class CadastroProdutoService implements Serializable {
 	@Inject
 	private Produtos produtos;
 
+	// Inserção e edição de produtos
 	@Transactional
 	public Produto salvar(Produto produto) {
 		System.out.println("porSku....");
 		Produto produtoExistente = produtos.porSku(produto.getSku());
 
-		if (produtoExistente != null) {
+		if (produtoExistente != null && !produtoExistente.equals(produto)) {
 			throw new NegocioException("Já existe um produto com o SKU informado.");
 		}
 
