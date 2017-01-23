@@ -2,6 +2,20 @@ package br.com.jkavdev.algaworks.javaee.model;
 
 public enum StatusPedido {
 
-	ORCAMENTO, EMITIDO, CANCELADO
+	ORCAMENTO("Orçamento"), EMITIDO("Emitido"), CANCELADO("Cancelado");
+
+	private String descricao;
+
+	private StatusPedido(String descricao) {
+		this.descricao = descricao;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
 }
