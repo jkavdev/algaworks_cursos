@@ -2,7 +2,9 @@ package br.com.jkavdev.algaworks.javaee.model;
 
 public enum StatusPedido {
 
-	ORCAMENTO("Orçamento"), EMITIDO("Emitido"), CANCELADO("Cancelado");
+	ORCAMENTO("Orçamento"), 
+	EMITIDO("Emitido"), 
+	CANCELADO("Cancelado");
 
 	private String descricao;
 
