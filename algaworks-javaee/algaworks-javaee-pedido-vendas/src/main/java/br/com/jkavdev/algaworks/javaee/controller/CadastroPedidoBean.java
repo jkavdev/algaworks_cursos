@@ -40,6 +40,9 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostBack()) {
 			vendedores = usuarios.vendedores();
+
+			// Resolvendo problema do lazy em itens
+			recalcularPedido();
 		}
 	}
 
@@ -51,6 +54,13 @@ public class CadastroPedidoBean implements Serializable {
 		pedido = cadastroPedidoService.salvar(pedido);
 
 		FacesUtil.addInfoMessagem("Pedido salvo com sucesso!");
+	}
+
+	public void recalcularPedido() {
+		// Será calculado o valor apenas quando criado o pedido
+		if (this.pedido != null) {
+			this.pedido.recalcularValorTotal();
+		}
 	}
 
 	public FormaPagamento[] getFormasPagamento() {
