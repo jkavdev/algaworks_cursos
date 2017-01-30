@@ -40,6 +40,8 @@ public class CadastroPedidoBean implements Serializable {
 	public void inicializar() {
 		if (FacesUtil.isNotPostBack()) {
 			vendedores = usuarios.vendedores();
+			
+			this.pedido.adicionarItemVazio();
 
 			// Resolvendo problema do lazy em itens
 			recalcularPedido();

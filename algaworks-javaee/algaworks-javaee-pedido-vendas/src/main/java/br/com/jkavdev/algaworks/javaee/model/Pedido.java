@@ -231,4 +231,25 @@ public class Pedido implements Serializable {
 		this.setValorTotal(total);
 	}
 
+	// Adiciona um item ao pedido, para vir com um item no render da tela
+	public void adicionarItemVazio() {
+		if (this.isOrcamento()) {
+			Produto produto = new Produto();
+			produto.setQuantidadeEstoque(1);
+
+			ItemPedido item = new ItemPedido();
+			item.setProduto(produto);
+			item.setPedido(this);
+
+			// adicionando item criado ao pedido
+			this.getItens().add(0, item);
+		}
+	}
+
+	//Validando o tipo de pedido que pode adicionar um item
+	@Transient
+	private boolean isOrcamento() {
+		return StatusPedido.ORCAMENTO.equals(this.getStatus());
+	}
+
 }
