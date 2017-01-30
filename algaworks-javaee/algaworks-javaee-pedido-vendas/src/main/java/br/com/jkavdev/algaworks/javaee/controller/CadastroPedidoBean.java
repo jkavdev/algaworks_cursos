@@ -9,6 +9,7 @@ import javax.inject.Named;
 
 import br.com.jkavdev.algaworks.javaee.model.Cliente;
 import br.com.jkavdev.algaworks.javaee.model.FormaPagamento;
+import br.com.jkavdev.algaworks.javaee.model.ItemPedido;
 import br.com.jkavdev.algaworks.javaee.model.Pedido;
 import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.model.Usuario;
@@ -70,8 +71,22 @@ public class CadastroPedidoBean implements Serializable {
 		}
 	}
 	
-	public void carregarProdutoLinhaEditavel(){
-		
+	public void carregarProdutoLinhaEditavel() {
+		// Retorna primeiro pedido
+		ItemPedido item = this.pedido.getItens().get(0);
+
+		if (this.produtoLinhaEditavel != null) {
+			// Adiciona relacionamento entre pedido e produto
+			item.setProduto(this.produtoLinhaEditavel);
+			item.setValorUnitario(this.produtoLinhaEditavel.getValorUnitario());
+
+			// Adiciona um novo item e atribui null ao produto
+			this.pedido.adicionarItemVazio();
+			this.produtoLinhaEditavel = null;
+
+			// Recalcula valor do pedido
+			this.pedido.recalcularValorTotal();
+		}
 	}
 	
 	public List<Produto> completarProduto(String nome){
