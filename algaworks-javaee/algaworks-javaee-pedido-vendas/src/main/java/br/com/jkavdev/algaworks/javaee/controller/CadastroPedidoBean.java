@@ -10,8 +10,10 @@ import javax.inject.Named;
 import br.com.jkavdev.algaworks.javaee.model.Cliente;
 import br.com.jkavdev.algaworks.javaee.model.FormaPagamento;
 import br.com.jkavdev.algaworks.javaee.model.Pedido;
+import br.com.jkavdev.algaworks.javaee.model.Produto;
 import br.com.jkavdev.algaworks.javaee.model.Usuario;
 import br.com.jkavdev.algaworks.javaee.repository.Clientes;
+import br.com.jkavdev.algaworks.javaee.repository.Produtos;
 import br.com.jkavdev.algaworks.javaee.repository.Usuarios;
 import br.com.jkavdev.algaworks.javaee.service.CadastroPedidoService;
 import br.com.jkavdev.algaworks.javaee.util.jsf.FacesUtil;
@@ -27,9 +29,12 @@ public class CadastroPedidoBean implements Serializable {
 	@Inject
 	private Clientes clientes;
 	@Inject
+	private Produtos produtos;
+	@Inject
 	private CadastroPedidoService cadastroPedidoService;
 
 	private Pedido pedido;
+	private Produto produtoLinhaEditavel;
 
 	private List<Usuario> vendedores;
 
@@ -64,6 +69,14 @@ public class CadastroPedidoBean implements Serializable {
 			this.pedido.recalcularValorTotal();
 		}
 	}
+	
+	public void carregarProdutoLinhaEditavel(){
+		
+	}
+	
+	public List<Produto> completarProduto(String nome){
+		return this.produtos.porNome(nome);
+	}
 
 	public FormaPagamento[] getFormasPagamento() {
 		return FormaPagamento.values();
@@ -79,6 +92,14 @@ public class CadastroPedidoBean implements Serializable {
 
 	public void setPedido(Pedido pedido) {
 		this.pedido = pedido;
+	}
+	
+	public Produto getProdutoLinhaEditavel() {
+		return produtoLinhaEditavel;
+	}
+	
+	public void setProdutoLinhaEditavel(Produto produtoLinhaEditavel) {
+		this.produtoLinhaEditavel = produtoLinhaEditavel;
 	}
 
 	public List<Usuario> getVendedores() {

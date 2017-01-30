@@ -14,7 +14,7 @@
 	<ui:define name="titulo">#{cadastroPedidoBean.editando ? 'Edição de Pedido' : 'Novo Pedido'}</ui:define>
 
 	<ui:define name="corpo">
-		<h:form>
+		<h:form id="frmCadastroPedido">
 			<h1>#{cadastroPedidoBean.editando ? 'Edição de Pedido' : 'Novo Pedido'}</h1>
 
 			<p:messages autoUpdate="true" closable="true"/>
