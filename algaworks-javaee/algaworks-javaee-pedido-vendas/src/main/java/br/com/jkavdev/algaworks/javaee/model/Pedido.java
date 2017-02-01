@@ -248,7 +248,7 @@ public class Pedido implements Serializable {
 
 	//Validando o tipo de pedido que pode adicionar um item
 	@Transient
-	private boolean isOrcamento() {
+	public boolean isOrcamento() {
 		return StatusPedido.ORCAMENTO.equals(this.getStatus());
 	}
 
