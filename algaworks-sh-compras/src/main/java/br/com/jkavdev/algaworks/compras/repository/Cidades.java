@@ -29,4 +29,14 @@ public class Cidades implements Serializable {
 		return cidadesPorEstado;
 	}
 
+	public Cidade porCodigo(Long codigo) {
+		EntityManager manager = this.factory.createEntityManager();
+		
+		Cidade cidadeEncontrada = manager.find(Cidade.class, codigo);
+		
+		manager.close();
+		
+		return cidadeEncontrada;
+	}
+
 }

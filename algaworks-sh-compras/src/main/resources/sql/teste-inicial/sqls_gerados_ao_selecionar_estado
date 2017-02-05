@@ -1,0 +1,27 @@
+Hibernate: 
+    select
+        estado0_.codigo as codigo1_1_0_,
+        estado0_.nome as nome2_1_0_,
+        estado0_.sigla as sigla3_1_0_ 
+    from
+        estado estado0_ 
+    where
+        estado0_.codigo=?
+Hibernate: 
+    select
+        cidade0_.codigo as codigo1_0_,
+        cidade0_.codigo_estado as codigo_e3_0_,
+        cidade0_.nome as nome2_0_ 
+    from
+        cidade cidade0_ 
+    where
+        cidade0_.codigo_estado=?
+Hibernate: 
+    select
+        estado0_.codigo as codigo1_1_0_,
+        estado0_.nome as nome2_1_0_,
+        estado0_.sigla as sigla3_1_0_ 
+    from
+        estado estado0_ 
+    where
+        estado0_.codigo=?

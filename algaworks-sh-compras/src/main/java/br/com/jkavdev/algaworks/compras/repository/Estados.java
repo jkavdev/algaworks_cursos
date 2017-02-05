@@ -26,4 +26,14 @@ public class Estados implements Serializable {
 		return todosEstados;
 	}
 
+	public Estado porCodigo(Long codigo) {
+		EntityManager manager = this.factory.createEntityManager();
+		
+		Estado estadoEncontrado = manager.find(Estado.class, codigo);
+		
+		manager.close();
+		
+		return estadoEncontrado;
+	}
+
 }
