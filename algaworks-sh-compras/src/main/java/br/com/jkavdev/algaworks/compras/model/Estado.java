@@ -1,32 +1,29 @@
-package com.algaworks.compras.model;
+package br.com.jkavdev.algaworks.compras.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "fornecedor")
-public class Fornecedor implements Serializable {
+@Table(name = "estado")
+public class Estado implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-
 	private String nome;
+	private String sigla;
 
-	private String telefone;
-
-	@ManyToOne
-	@JoinColumn(name = "codigo_cidade")
-	private Cidade cidade;
+	@OneToMany(mappedBy = "estado")
+	private List<Cidade> cidades;
 
 	public Long getCodigo() {
 		return codigo;
@@ -44,20 +41,20 @@ public class Fornecedor implements Serializable {
 		this.nome = nome;
 	}
 
-	public String getTelefone() {
-		return telefone;
+	public String getSigla() {
+		return sigla;
 	}
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
 	}
 
-	public Cidade getCidade() {
-		return cidade;
+	public List<Cidade> getCidades() {
+		return cidades;
 	}
 
-	public void setCidade(Cidade cidade) {
-		this.cidade = cidade;
+	public void setCidades(List<Cidade> cidades) {
+		this.cidades = cidades;
 	}
 
 	@Override
@@ -76,7 +73,7 @@ public class Fornecedor implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Fornecedor other = (Fornecedor) obj;
+		Estado other = (Estado) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

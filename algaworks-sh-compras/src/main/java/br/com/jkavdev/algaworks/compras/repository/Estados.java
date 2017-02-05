@@ -1,4 +1,4 @@
-package com.algaworks.compras.repository;
+package br.com.jkavdev.algaworks.compras.repository;
 
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package com.algaworks.compras.model;
+package br.com.jkavdev.algaworks.compras.model;
 
 import java.io.Serializable;
 
@@ -11,8 +11,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "cidade")
-public class Cidade implements Serializable {
+@Table(name = "fornecedor")
+public class Fornecedor implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,9 +22,11 @@ public class Cidade implements Serializable {
 
 	private String nome;
 
+	private String telefone;
+
 	@ManyToOne
-	@JoinColumn(name = "codigo_estado")
-	private Estado estado;
+	@JoinColumn(name = "codigo_cidade")
+	private Cidade cidade;
 
 	public Long getCodigo() {
 		return codigo;
@@ -42,12 +44,20 @@ public class Cidade implements Serializable {
 		this.nome = nome;
 	}
 
-	public Estado getEstado() {
-		return estado;
+	public String getTelefone() {
+		return telefone;
 	}
 
-	public void setEstado(Estado estado) {
-		this.estado = estado;
+	public void setTelefone(String telefone) {
+		this.telefone = telefone;
+	}
+
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		this.cidade = cidade;
 	}
 
 	@Override
@@ -66,7 +76,7 @@ public class Cidade implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Cidade other = (Cidade) obj;
+		Fornecedor other = (Fornecedor) obj;
 		if (codigo == null) {
 			if (other.codigo != null)
 				return false;

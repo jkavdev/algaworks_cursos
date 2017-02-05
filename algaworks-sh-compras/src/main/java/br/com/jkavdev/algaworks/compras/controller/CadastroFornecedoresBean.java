@@ -1,4 +1,4 @@
-package com.algaworks.compras.controller;
+package br.com.jkavdev.algaworks.compras.controller;
 
 import java.io.Serializable;
 import java.util.List;
@@ -7,12 +7,12 @@ import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import com.algaworks.compras.model.Cidade;
-import com.algaworks.compras.model.Estado;
-import com.algaworks.compras.model.Fornecedor;
-import com.algaworks.compras.repository.Cidades;
-import com.algaworks.compras.repository.Estados;
-import com.algaworks.compras.repository.Fornecedores;
+import br.com.jkavdev.algaworks.compras.model.Cidade;
+import br.com.jkavdev.algaworks.compras.model.Estado;
+import br.com.jkavdev.algaworks.compras.model.Fornecedor;
+import br.com.jkavdev.algaworks.compras.repository.Cidades;
+import br.com.jkavdev.algaworks.compras.repository.Estados;
+import br.com.jkavdev.algaworks.compras.repository.Fornecedores;
 
 @Named
 @ViewScoped
