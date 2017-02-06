@@ -1,0 +1,8 @@
+Hibernate: 
+    select
+        fornecedor0_.codigo as codigo1_2_,
+        fornecedor0_.codigo_cidade as codigo_c4_2_,
+        fornecedor0_.nome as nome2_2_,
+        fornecedor0_.telefone as telefone3_2_ 
+    from
+        fornecedor fornecedor0_
