@@ -15,6 +15,9 @@ public class Fornecedores implements Serializable {
 
 	@Inject
 	private EntityManagerFactory factory;
+	
+	@Inject
+	private EntityManager manager;
 
 	public void adicionar(Fornecedor fornecedor) {
 		EntityManager manager = this.factory.createEntityManager();
@@ -27,13 +30,7 @@ public class Fornecedores implements Serializable {
 	}
 
 	public List<Fornecedor> todos() {
-		EntityManager manager = this.factory.createEntityManager();
-
-		List<Fornecedor> todosFornecedores = manager.createQuery("from Fornecedor", Fornecedor.class).getResultList();
-
-		manager.close();
-
-		return todosFornecedores;
+		return this.manager.createQuery("from Fornecedor", Fornecedor.class).getResultList();
 	}
 
 }
