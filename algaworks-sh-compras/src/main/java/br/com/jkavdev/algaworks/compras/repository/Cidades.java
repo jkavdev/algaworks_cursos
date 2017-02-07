@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 
 import br.com.jkavdev.algaworks.compras.model.Cidade;
 import br.com.jkavdev.algaworks.compras.model.Estado;
@@ -15,28 +14,16 @@ public class Cidades implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EntityManagerFactory factory;
+	private EntityManager manager;
 
 	public List<Cidade> porEstado(Estado estado) {
-		EntityManager manager = this.factory.createEntityManager();
-
-		List<Cidade> cidadesPorEstado = manager.createQuery("From Cidade c where c.estado = :estado", Cidade.class)
+		return this.manager.createQuery("From Cidade c where c.estado = :estado", Cidade.class)
 				.setParameter("estado", estado)
 				.getResultList();
-		
-		manager.close();
-
-		return cidadesPorEstado;
 	}
 
 	public Cidade porCodigo(Long codigo) {
-		EntityManager manager = this.factory.createEntityManager();
-		
-		Cidade cidadeEncontrada = manager.find(Cidade.class, codigo);
-		
-		manager.close();
-		
-		return cidadeEncontrada;
+		return this.manager.find(Cidade.class, codigo);
 	}
 
 }
