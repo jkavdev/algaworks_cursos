@@ -38,7 +38,7 @@ public class CadastroFornecedoresBean implements Serializable {
 	public void inicializar() {
 		this.fornecedor = new Fornecedor();
 		this.estado = null;
-		this.todosFornecedores = this.fornecedores.todos();
+		this.todosFornecedores = this.fornecedores.todosTodosComCidadeEEstado();
 
 		if (!FacesContext.getCurrentInstance().isPostback()) {
 			this.todosEstados = this.estados.todos();

@@ -29,8 +29,9 @@ public class Fornecedores implements Serializable {
 		manager.close();
 	}
 
-	public List<Fornecedor> todos() {
-		return this.manager.createQuery("from Fornecedor", Fornecedor.class).getResultList();
+	public List<Fornecedor> todosTodosComCidadeEEstado() {
+		return this.manager.createQuery("from Fornecedor f inner join fetch f.cidade c inner join fetch c.estado",
+				Fornecedor.class).getResultList();
 	}
 
 }
