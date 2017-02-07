@@ -5,7 +5,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
+
+import org.hibernate.Session;
 
 import br.com.jkavdev.algaworks.compras.model.Estado;
 
@@ -14,26 +15,19 @@ public class Estados implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Inject
-	private EntityManagerFactory factory;
+	private EntityManager manager;
 
+	@SuppressWarnings("unchecked")
 	public List<Estado> todos() {
-		EntityManager manager = this.factory.createEntityManager();
+		Session session = this.manager.unwrap(Session.class);
 
-		List<Estado> todosEstados = manager.createQuery("from Estado order by nome", Estado.class).getResultList();
-
-		manager.close();
-
-		return todosEstados;
+		return session.createQuery("from Estado order by nome")
+				.setCacheable(true)
+				.list();
 	}
 
 	public Estado porCodigo(Long codigo) {
-		EntityManager manager = this.factory.createEntityManager();
-		
-		Estado estadoEncontrado = manager.find(Estado.class, codigo);
-		
-		manager.close();
-		
-		return estadoEncontrado;
+		return this.manager.find(Estado.class, codigo);
 	}
 
 }
