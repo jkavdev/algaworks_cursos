@@ -1,0 +1,36 @@
+Hibernate: 
+    select
+        cidade0_.codigo as codigo1_0_,
+        cidade0_.codigo_estado as codigo_e3_0_,
+        cidade0_.nome as nome2_0_ 
+    from
+        cidade cidade0_ 
+    where
+        cidade0_.codigo_estado=?
+Hibernate: 
+    insert 
+    into
+        fornecedor
+        (codigo_cidade, nome, telefone) 
+    values
+        (?, ?, ?)
+Hibernate: 
+    select
+        fornecedor0_.codigo as codigo1_2_0_,
+        cidade1_.codigo as codigo1_0_1_,
+        estado2_.codigo as codigo1_1_2_,
+        fornecedor0_.codigo_cidade as codigo_c4_2_0_,
+        fornecedor0_.nome as nome2_2_0_,
+        fornecedor0_.telefone as telefone3_2_0_,
+        cidade1_.codigo_estado as codigo_e3_0_1_,
+        cidade1_.nome as nome2_0_1_,
+        estado2_.nome as nome2_1_2_,
+        estado2_.sigla as sigla3_1_2_ 
+    from
+        fornecedor fornecedor0_ 
+    inner join
+        cidade cidade1_ 
+            on fornecedor0_.codigo_cidade=cidade1_.codigo 
+    inner join
+        estado estado2_ 
+            on cidade1_.codigo_estado=estado2_.codigo

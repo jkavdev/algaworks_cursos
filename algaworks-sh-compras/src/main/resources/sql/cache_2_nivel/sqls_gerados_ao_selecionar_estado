@@ -1,0 +1,9 @@
+Hibernate: 
+    select
+        cidade0_.codigo as codigo1_0_,
+        cidade0_.codigo_estado as codigo_e3_0_,
+        cidade0_.nome as nome2_0_ 
+    from
+        cidade cidade0_ 
+    where
+        cidade0_.codigo_estado=?
