@@ -37,7 +37,7 @@ public class AppJpaConfig {
 		HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
 		adapter.setDatabase(Database.MYSQL);
 		adapter.setShowSql(true);
-		adapter.setGenerateDdl(false);
+		adapter.setGenerateDdl(true);
 		adapter.setDatabasePlatform("org.hibernate.dialect.MySQL5InnoDBDialect");
 
 		return adapter;
@@ -50,7 +50,7 @@ public class AppJpaConfig {
 		entityManagerFactory.setDataSource(dataSource);
 		entityManagerFactory.setJpaVendorAdapter(jpaVendorAdapter);
 		entityManagerFactory.setPackagesToScan(Imovel.class.getPackage().getName());
-		entityManagerFactory.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "update");
+		entityManagerFactory.getJpaPropertyMap().put("hibernate.hbm2ddl.auto", "create");
 
 		return entityManagerFactory;
 	}
