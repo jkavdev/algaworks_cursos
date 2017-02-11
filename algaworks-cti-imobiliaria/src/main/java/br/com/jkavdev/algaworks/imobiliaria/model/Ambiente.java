@@ -4,6 +4,7 @@ import javax.persistence.Embeddable;
 
 @Embeddable
 public class Ambiente {
+	
 	public Integer quartos;
 	public Integer garagens;
 	public Integer salas;
