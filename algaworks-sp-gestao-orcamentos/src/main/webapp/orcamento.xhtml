@@ -38,9 +38,9 @@
 					<p:outputLabel value="Condição pagamento" for="condicaoPagamento"/>
 					<p:selectOneMenu id="condicaoPagamento" value="#{cadastroOrcamentoBean.orcamento.condicaoPagamento}">
 						<f:selectItem itemLabel="Selecione"/>
-						<f:selectItem itemLabel="A vista"/>
-						<f:selectItem itemLabel="30 dias"/>
-						<f:selectItem itemLabel="30 + 60 dias"/>
+						<f:selectItem itemLabel="A vista" itemValue="A vista"/>
+						<f:selectItem itemLabel="30 dias" itemValue="30 dias"/>
+						<f:selectItem itemLabel="30 + 60 dias" itemValue="30 + 60 dias"/>
 					</p:selectOneMenu>
 					
 					<p:outputLabel value="Dias entrega" for="diasEntrega"/>
