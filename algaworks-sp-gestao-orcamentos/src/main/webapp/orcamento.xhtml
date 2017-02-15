@@ -15,30 +15,38 @@
 				</p:toolbarGroup>
 			</p:toolbar>
 			
-			<p:panelGrid columns="4" style="margin-top: 20px;">
-				<p:outputLabel value="Cliente"/>
-				<p:inputText />
-				
-				<p:outputLabel value="CPF"/>
-				<p:inputMask mask="999.999.999-99"/>
-				
-				<p:outputLabel value="Telefone"/>
-				<p:inputText />
-				
-				<p:outputLabel value="Condição pagamento"/>
-				<p:selectOneMenu>
-					<f:selectItem itemLabel="Selecione"/>
-					<f:selectItem itemLabel="A vista"/>
-					<f:selectItem itemLabel="30 dias"/>
-					<f:selectItem itemLabel="30 + 60 dias"/>
-				</p:selectOneMenu>
-				
-				<p:outputLabel value="Dias entrega"/>
-				<p:inputText />
-				
-				<p:outputLabel value="Validade"/>
-				<p:calendar pattern="dd/MM/yyyy"/>
-			</p:panelGrid>
+			<!-- classe ui-fluid faz com que todos os componentes ocupem os espaços restante -->
+			<div class="ui-fluid">
+				<!-- laoyut=grid - atributo para deixar o panel grid responsivo -->
+				<!-- ui-grid-col-2 - estou informando a quantidade de espaços para cada coluna, tem que dar um total de 12 -->
+				<p:panelGrid columns="4" layout="grid" 
+					style="margin-top: 20px;"
+					styleClass="panelgrid-noborder"
+					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
+					<p:outputLabel value="Cliente"/>
+					<p:inputText />
+					
+					<p:outputLabel value="CPF"/>
+					<p:inputMask mask="999.999.999-99"/>
+					
+					<p:outputLabel value="Telefone"/>
+					<p:inputText />
+					
+					<p:outputLabel value="Condição pagamento"/>
+					<p:selectOneMenu>
+						<f:selectItem itemLabel="Selecione"/>
+						<f:selectItem itemLabel="A vista"/>
+						<f:selectItem itemLabel="30 dias"/>
+						<f:selectItem itemLabel="30 + 60 dias"/>
+					</p:selectOneMenu>
+					
+					<p:outputLabel value="Dias entrega"/>
+					<p:inputText />
+					
+					<p:outputLabel value="Validade"/>
+					<p:calendar pattern="dd/MM/yyyy"/>
+				</p:panelGrid>
+			</div>
 		</h:form>
 	</ui:define>
 	
