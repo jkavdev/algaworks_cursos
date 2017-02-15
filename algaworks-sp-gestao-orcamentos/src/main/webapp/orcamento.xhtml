@@ -23,7 +23,7 @@
 				<!-- laoyut=grid - atributo para deixar o panel grid responsivo -->
 				<!-- ui-grid-col-2 - estou informando a quantidade de espaços para cada coluna, tem que dar um total de 12 -->
 				<p:panelGrid columns="4" layout="grid" 
-					style="margin-top: 20px;"
+					style="margin-top: 20px; margin-bottom: 40px;"
 					styleClass="panelgrid-noborder"
 					columnClasses="ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4, ui-grid-col-2, ui-grid-col-4">
 					<p:outputLabel value="Cliente" for="cliente"/>
@@ -50,6 +50,33 @@
 					<p:calendar id="validade" pattern="dd/MM/yyyy" value="#{cadastroOrcamentoBean.orcamento.dataValidade}"/>
 				</p:panelGrid>
 			</div>
+			
+			<p:commandButton value="Novo item"
+				oncomplete="PF('itemDialog').show()" />
+			
+			<p:dialog widgetVar="itemDialog" header="Novo item"
+				resizable="false" style="width: 300px;" responsive="true">
+				<h:panelGroup id="itemPanel" layout="block" styleClass="ui-fluid">
+					<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
+						columnClasses="ui-grid-col-4, ui-grid-col-8">
+						
+						<p:outputLabel value="Descrição" for="descricao"/>
+						<p:inputText id="descricao"/>
+						
+						<p:outputLabel value="Tipo" for="tipo"/>
+						<p:selectOneMenu id="tipo">
+							<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
+							<f:selectItem itemLabel="Serviço" itemValue="SERVICO"/>
+						</p:selectOneMenu>
+						
+						<p:outputLabel value="Preço" for="preco"/>
+						<p:inputText id="preco"/>
+						
+						<p:outputLabel />
+						<p:commandButton value="Adicionar"/>
+					</p:panelGrid>
+				</h:panelGroup>
+			</p:dialog>
 		</h:form>
 	</ui:define>
 	
