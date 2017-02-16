@@ -62,8 +62,10 @@
 				<p:resetInput target="itemPanel" />
 			</p:commandButton>
 				
+			<!-- reflow=true - adiciona responsibilidade para a visualização da tabela -->
 			<p:dataTable id="itensTable" value="#{cadastroOrcamentoBean.orcamento.itens}" var="item"
-				emptyMessage="Nenhum item adicionado." style="margin-top: 20px;">
+				emptyMessage="Nenhum item adicionado." style="margin-top: 20px;"
+				reflow="true">
 				<p:column headerText="Descrição">
 					<h:outputText value="#{item.descricao}" />
 				</p:column>
