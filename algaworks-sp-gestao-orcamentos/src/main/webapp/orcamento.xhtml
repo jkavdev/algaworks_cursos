@@ -51,29 +51,38 @@
 				</p:panelGrid>
 			</div>
 			
+			<!-- Se não informamos quem será processado na ação, por padrão o primefaces processará o formulário inteiro -->
+			<!-- Indicamos apenas que será processado este componente -->
 			<p:commandButton value="Novo item"
-				oncomplete="PF('itemDialog').show()" />
+				action="#{cadastroOrcamentoBean.novoItem}"
+				oncomplete="PF('itemDialog').show()"
+				process="@this" />
 			
 			<p:dialog widgetVar="itemDialog" header="Novo item"
 				resizable="false" style="width: 300px;" responsive="true">
 				<h:panelGroup id="itemPanel" layout="block" styleClass="ui-fluid">
+					<p:messages id="msgDialog" autoUpdate="false" />
+					
 					<p:panelGrid columns="2" layout="grid" styleClass="panelgrid-noborder"
 						columnClasses="ui-grid-col-4, ui-grid-col-8">
 						
 						<p:outputLabel value="Descrição" for="descricao"/>
-						<p:inputText id="descricao"/>
+						<p:inputText id="descricao" value="#{cadastroOrcamentoBean.item.descricao}"/>
 						
 						<p:outputLabel value="Tipo" for="tipo"/>
-						<p:selectOneMenu id="tipo">
+						<p:selectOneMenu id="tipo" value="#{cadastroOrcamentoBean.item.tipo}">
+							<f:selectItem itemLabel="Selecione"/>
 							<f:selectItem itemLabel="Produto" itemValue="PRODUTO"/>
 							<f:selectItem itemLabel="Serviço" itemValue="SERVICO"/>
 						</p:selectOneMenu>
 						
 						<p:outputLabel value="Preço" for="preco"/>
-						<p:inputText id="preco"/>
+						<p:inputText id="preco" value="#{cadastroOrcamentoBean.item.preco}">
+							<f:convertNumber type="currency"/>
+						</p:inputText>
 						
 						<p:outputLabel />
-						<p:commandButton value="Adicionar"/>
+						<p:commandButton value="Adicionar" action="#{cadastroOrcamentoBean.adicionarItem}"/>
 					</p:panelGrid>
 				</h:panelGroup>
 			</p:dialog>

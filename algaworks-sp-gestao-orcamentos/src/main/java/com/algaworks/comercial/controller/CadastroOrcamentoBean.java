@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import com.algaworks.comercial.model.Orcamento;
+import com.algaworks.comercial.model.OrcamentoItem;
 import com.algaworks.comercial.service.GestaoOrcamentos;
 
 @Named
@@ -21,6 +22,16 @@ public class CadastroOrcamentoBean implements Serializable {
 	private GestaoOrcamentos gestaoOrcamentos;
 
 	private Orcamento orcamento = new Orcamento();
+	private OrcamentoItem item;
+	
+	public void novoItem(){
+		this.item = new OrcamentoItem();
+	}
+	
+	public void adicionarItem(){
+		this.orcamento.getItens().add(this.item);
+		item.setOrcamento(this.orcamento);
+	}
 
 	public void salvar() {
 		this.gestaoOrcamentos.salvar(this.orcamento);
@@ -32,6 +43,10 @@ public class CadastroOrcamentoBean implements Serializable {
 
 	public Orcamento getOrcamento() {
 		return orcamento;
+	}
+	
+	public OrcamentoItem getItem() {
+		return item;
 	}
 
 }
