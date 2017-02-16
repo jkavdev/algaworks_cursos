@@ -67,6 +67,16 @@
 				<p:column headerText="Descrição">
 					<h:outputText value="#{item.descricao}" />
 				</p:column>
+				
+				<p:column headerText="Tipo">
+					<h:outputText value="#{item.tipo.descricao}" />
+				</p:column>
+				
+				<p:column headerText="Preço">
+					<h:outputText value="#{item.preco}">
+						<f:convertNumber type="currency"/>
+					</h:outputText>
+				</p:column>
 			</p:dataTable>
 			
 			<p:dialog widgetVar="itemDialog" header="Novo item"
@@ -89,7 +99,7 @@
 						
 						<p:outputLabel value="Preço" for="preco"/>
 						<p:inputText id="preco" value="#{cadastroOrcamentoBean.item.preco}">
-							<f:convertNumber type="currency"/>
+							<f:convertNumber/>
 						</p:inputText>
 
 						<!-- Se a validação dos campos não falhou ele fecha o diálogo -->						
