@@ -53,10 +53,21 @@
 			
 			<!-- Se não informamos quem será processado na ação, por padrão o primefaces processará o formulário inteiro -->
 			<!-- Indicamos apenas que será processado este componente -->
+			<!-- Reseta o estado dos inputs do componente, uma vez que a validação foi ativada e apenas fechamos o componente -->
+			<!-- Com o resetInput limpamos a validação do campo quando renderizado -->
 			<p:commandButton value="Novo item"
 				action="#{cadastroOrcamentoBean.novoItem}"
 				oncomplete="PF('itemDialog').show()"
-				process="@this" />
+				process="@this" update="itemPanel">
+				<p:resetInput target="itemPanel" />
+			</p:commandButton>
+				
+			<p:dataTable id="itensTable" value="#{cadastroOrcamentoBean.orcamento.itens}" var="item"
+				emptyMessage="Nenhum item adicionado." style="margin-top: 20px;">
+				<p:column headerText="Descrição">
+					<h:outputText value="#{item.descricao}" />
+				</p:column>
+			</p:dataTable>
 			
 			<p:dialog widgetVar="itemDialog" header="Novo item"
 				resizable="false" style="width: 300px;" responsive="true">
@@ -80,9 +91,14 @@
 						<p:inputText id="preco" value="#{cadastroOrcamentoBean.item.preco}">
 							<f:convertNumber type="currency"/>
 						</p:inputText>
-						
+
+						<!-- Se a validação dos campos não falhou ele fecha o diálogo -->						
 						<p:outputLabel />
-						<p:commandButton value="Adicionar" action="#{cadastroOrcamentoBean.adicionarItem}"/>
+						<p:commandButton value="Adicionar" 
+							action="#{cadastroOrcamentoBean.adicionarItem}"
+							process="itemPanel" update="itemPanel itensTable"
+							oncomplete="if (!args.validationFailed) PF('itemDialog').hide()"/>
+							
 					</p:panelGrid>
 				</h:panelGroup>
 			</p:dialog>
