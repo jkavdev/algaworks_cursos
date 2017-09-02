@@ -50,6 +50,12 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Com o flyway podemos evoluir o banco de dados de uma forma simples -->
+		<!-- Apenas crie um arquivo contendo as mudancas que devera ocorrer no banco -->
+		<dependency>
+			<groupId>org.flywaydb</groupId>
+			<artifactId>flyway-core</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>
