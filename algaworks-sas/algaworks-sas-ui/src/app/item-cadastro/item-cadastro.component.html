@@ -1,0 +1,12 @@
+<table border="1">
+  <tr>
+    <th>Etiqueta</th>
+    <th>Descrição</th>
+    <th>Aquisição</th>
+  </tr>
+  <tr *ngFor="let item of itens">
+    <td>{{item.etiqueta}}</td>
+    <td>{{item.descricao}}</td>
+    <td>{{item.dataAquisicao | date: 'dd/MM/yyyy'}}</td>
+  </tr>
+</table>
