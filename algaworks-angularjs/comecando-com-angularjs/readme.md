@@ -55,3 +55,48 @@
             </ul>
             <p>{{ filme.sinopse }}</p>
         </div>
+
+* removendo um filme com `ng-click`        
+
+
+        <button class="del" title="Excluir" ng-click="removerFilme(filme.id)"></button>
+
+        $scope.removerFilme = function (id) {
+            angular.forEach($scope.filmes, (filme, i) => {
+                if (filme.id == id) {
+                    $scope.filmes.splice(i, 1);
+                }
+            });
+        }        
+
+* preenchendo os dados do filme com `ng-model`
+
+
+        <div class="form-campo">
+            <label for="titulo">Título</label>
+            <input type="text" id="titulo" ng-model="novoFilme.titulo">
+        </div>
+        <div class="form-campo pequeno">
+            <label for="ano">Ano de Lançamento</label>
+            <input type="number" id="ano" ng-model="novoFilme.ano">
+        </div>
+
+* adicionando um filme com no `submit` do formulario com `ng-submit`
+* ao realizar o `submit` chama funcao no `controler`, `ng-submit="adicionarFilme()"`
+
+
+        <form class="form-filmes" ng-submit="adicionarFilme()">
+            <footer>
+                <button type="reset">Limpar</button>
+                <button type="submit">Salvar</button>
+            </footer>
+        </form>
+
+
+
+
+
+
+
+
+

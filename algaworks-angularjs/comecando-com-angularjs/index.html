@@ -31,27 +31,27 @@
 
         <hr>
 
-        <form class="form-filmes">
+        <form class="form-filmes" ng-submit="adicionarFilme()">
             <h1>Adicionar Filme</h1>
             <div class="form-campo">
                 <label for="titulo">Título</label>
-                <input type="text" id="titulo">
+                <input type="text" id="titulo" ng-model="novoFilme.titulo">
             </div>
             <div class="form-campo pequeno">
                 <label for="ano">Ano de Lançamento</label>
-                <input type="number" id="ano">
+                <input type="number" id="ano" ng-model="novoFilme.ano">
             </div>
             <div class="form-campo medio">
                 <label for="produtora">Produtora</label>
-                <input type="text" id="produtora">
+                <input type="text" id="produtora" ng-model="novoFilme.produtora">
             </div>
             <div class="form-campo">
                 <label for="cartaz">Url do Cartaz</label>
-                <input type="text" id="cartaz">
+                <input type="text" id="cartaz" ng-model="novoFilme.cartaz">
             </div>
             <div class="form-campo">
                 <label for="sinopse">Sinópse</label>
-                <textarea id="sinopse" rows="5"></textarea>
+                <textarea id="sinopse" rows="5" ng-model="novoFilme.sinopse"></textarea>
             </div>
 
             <footer>
