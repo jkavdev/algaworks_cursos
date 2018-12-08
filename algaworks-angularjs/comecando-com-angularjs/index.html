@@ -19,7 +19,7 @@
         <div class="lista-filmes">
             <div class="filme com-cartaz" ng-repeat="filme in filmes">
                 <h1>{{ filme.titulo }}</h1>
-                <button class="del" title="Excluir"></button>
+                <button class="del" title="Excluir" ng-click="removerFilme(filme.id)"></button>
                 <img ng-src="{{ filme.cartaz }}" alt="Cartaz de {{ filme.titulo }}">
                 <ul>
                     <li><strong>Ano:</strong> {{ filme.ano }}</li>
