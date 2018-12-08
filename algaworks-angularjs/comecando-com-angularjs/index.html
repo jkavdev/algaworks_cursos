@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Filmes que já assisti</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Filmes que já assisti</h1>
+
+        <div class="lista-filmes">
+            <div class="filme com-cartaz">
+                <h1>Deadpool</h1>
+                <button class="del" title="Excluir"></button>
+                <img src="http://www.mediaplus.com.br/clicfolha2016/uploads/imagem_arquivo/918856_cine1.png" alt="Cartaz de Deadpool">
+                <ul>
+                    <li><strong>Ano:</strong> 2016</li>
+                    <li><strong>Produtora:</strong> Fox</li>
+                </ul>
+                <p>Baseado no anti-herói não convencional da Marvel Comics, Deadpool conta a história da origem do ex-agente
+                    das Forças Especiais que se tornou o mercenário Wade Wilson. Depois de ser submetido a um desonesto experimento
+                    que o deixa com poderes de cura acelerada, Wade adota o alter ego de Deadpool. Armado com suas novas
+                    habilidades e um senso de humor negro e distorcido, Deadpool persegue o homem que quase destruiu sua
+                    vida.
+                </p>
+            </div>
+        </div>
+
+        <hr>
+
+        <form class="form-filmes">
+            <h1>Adicionar Filme</h1>
+            <div class="form-campo">
+                <label for="titulo">Título</label>
+                <input type="text" id="titulo">
+            </div>
+            <div class="form-campo pequeno">
+                <label for="ano">Ano de Lançamento</label>
+                <input type="number" id="ano">
+            </div>
+            <div class="form-campo medio">
+                <label for="produtora">Produtora</label>
+                <input type="text" id="produtora">
+            </div>
+            <div class="form-campo">
+                <label for="cartaz">Url do Cartaz</label>
+                <input type="text" id="cartaz">
+            </div>
+            <div class="form-campo">
+                <label for="sinopse">Sinópse</label>
+                <textarea id="sinopse" rows="5"></textarea>
+            </div>
+
+            <footer>
+                <button type="reset">Limpar</button>
+                <button type="submit">Salvar</button>
+            </footer>
+        </form>
+    </div>
+
+</body>
+
+</html>
