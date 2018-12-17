@@ -12,14 +12,50 @@
                   [autoWidth]="false"
                   placeholder="Selecione..."
                   [options]="clientes"
-                  optionLabel="nome">
+                  optionLabel="nome"
+                  [(ngModel)]="venda.cliente" required>
 
       </p-dropdown>
     </div>
+
     <div class="ui-g-4 ui-fluid">
       <label>Cliente</label>
       <input pInputText id="frente" name="frete"
-             currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}">
+             currencyMask [options]="{prefix: '', thousands: '.', decimal: ',', allowNegative: false}"
+             [(ngModel)]="venda.frete" required>
+    </div>
+
+    <div class="ui-g-12">
+      <p-panel header="itens">
+        <div class="ui-g">
+          <div class="ui-g-8 ui-fluid">
+            <label>Produto</label>
+            <p-dropdown id="produto" name="produto"
+                        [autoWidth]="false"
+                        placeholder="Selecione..."
+                        [options]="produtos"
+                        optionLabel="nome"
+                        [(ngModel)]="item.produto" required
+                        #produto>
+
+            </p-dropdown>
+          </div>
+
+          <div class="ui-g-3 ui-fluid">
+            <label>Quantidade</label>
+            <input pInputText type="number" id="quantidade" name="quantidade"
+                   [(ngModel)]="item.quantidade" required
+                   #quantidade>
+          </div>
+
+          <div class="ui-g-1 ui-fluid">
+            <br />
+            <button pButton type="button" icon="pi pi-plus"
+                    (click)="incluirItem()"
+                    [disabled]="!produto.value || !quantidade.value"></button>
+          </div>
+        </div>
+      </p-panel>
     </div>
   </div>
 </form>
