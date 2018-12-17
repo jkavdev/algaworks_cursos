@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 
 import {VendasService} from "../vendas/vendas.service";
+import {FormGroup} from "@angular/forms";
 
 @Component({
   selector: 'app-vendas-cadastro',
@@ -11,8 +12,8 @@ export class VendasCadastroComponent implements OnInit {
 
   clientes: Array<any>;
   produtos: Array<any>;
-  venda: any = {itens: [], frete: 0.0, total: 0.0};
-  item: any = {};
+  venda: any;
+  item: any;
 
   constructor(private vendaService: VendasService) {
   }
@@ -20,6 +21,13 @@ export class VendasCadastroComponent implements OnInit {
   ngOnInit() {
     this.vendaService.listarClientes().subscribe(response => this.clientes = response);
     this.vendaService.listarProdutos().subscribe(response => this.produtos = response);
+
+    this.novaVenda();
+  }
+
+  novaVenda() {
+    this.venda = {itens: [], frete: 0.0, total: 0.0};
+    this.item = {};
   }
 
   incluirItem() {
@@ -38,8 +46,12 @@ export class VendasCadastroComponent implements OnInit {
     this.venda.total = totalItens + this.venda.frete;
   }
 
-  adicionar() {
+  adicionar(form: FormGroup) {
+    this.vendaService.adicionar(this.venda).subscribe(response => {
+      form.reset();
 
+      this.novaVenda();
+    })
   }
 
 }
