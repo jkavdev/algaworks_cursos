@@ -38,4 +38,8 @@ export class VendasCadastroComponent implements OnInit {
     this.venda.total = totalItens + this.venda.frete;
   }
 
+  adicionar() {
+
+  }
+
 }

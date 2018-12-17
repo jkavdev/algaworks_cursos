@@ -4,7 +4,7 @@
   </div>
 </div>
 
-<form>
+<form autocomplete="off" #form="ngForm" (ngSubmit)="adicionar()">
   <div class="ui-g">
     <div class="ui-g-8 ui-fluid">
       <label>Cliente</label>
@@ -89,6 +89,11 @@
     <div class="ui-g-4 ui-g-offset-8 ui-fluid">
       <label>Total</label>
       <input pInputText readonly [value]="venda.total | number:'1.2-2'">
+    </div>
+
+    <div class="ui-g-4">
+      <button pButton icon="pi pi-check" label="Salvar"
+              [disabled]="form.invalid || venda.itens.length === 0"></button>
     </div>
   </div>
 </form>
