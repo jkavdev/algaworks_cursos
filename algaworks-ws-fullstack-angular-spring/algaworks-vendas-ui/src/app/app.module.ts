@@ -6,10 +6,13 @@ import localePt from "@angular/common/locales/pt";
 import {registerLocaleData} from "@angular/common";
 
 import {TableModule} from "primeng/components/table/table";
+import {DropdownModule} from "primeng/components/dropdown/dropdown";
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
 import {VendasListagemComponent} from './vendas-listagem/vendas-listagem.component';
+import {VendasCadastroComponent} from './vendas-cadastro/vendas-cadastro.component';
+
 
 registerLocaleData(localePt);
 
@@ -17,13 +20,16 @@ registerLocaleData(localePt);
   declarations: [
     AppComponent,
     NavbarComponent,
-    VendasListagemComponent
+    VendasListagemComponent,
+    VendasCadastroComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    TableModule
+
+    TableModule,
+    DropdownModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
