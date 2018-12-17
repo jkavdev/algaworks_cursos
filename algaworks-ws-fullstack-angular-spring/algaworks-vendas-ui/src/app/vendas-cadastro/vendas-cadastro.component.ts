@@ -28,4 +28,5 @@ export class VendasCadastroComponent implements OnInit {
     this.venda.itens.push(this.item);
     this.item = {};
   }
+
 }

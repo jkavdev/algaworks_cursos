@@ -1,6 +1,10 @@
 <div class="ui-g">
   <div class="ui-g-12">
     <p-table [value]="vendas">
+      <ng-template pTemplate="caption">
+        Listagem de Vendas
+      </ng-template>
+
       <ng-template pTemplate="header">
         <tr>
           <th class="col-header-id">Código</th>
