@@ -7,11 +7,15 @@ import localePt from "@angular/common/locales/pt";
 import {registerLocaleData} from "@angular/common";
 
 import {CurrencyMaskModule} from "ng2-currency-mask";
+
+import {MessageService} from "primeng/components/common/messageservice";
+
 import {TableModule} from "primeng/components/table/table";
 import {DropdownModule} from "primeng/components/dropdown/dropdown";
 import {InputTextModule} from "primeng/components/inputtext/inputtext";
 import {PanelModule} from "primeng/components/panel/panel";
 import {ButtonModule} from "primeng/components/button/button";
+import {GrowlModule} from "primeng/components/growl/growl";
 
 import {AppComponent} from './app.component';
 import {NavbarComponent} from './navbar/navbar.component';
@@ -38,10 +42,12 @@ registerLocaleData(localePt);
     DropdownModule,
     InputTextModule,
     PanelModule,
-    ButtonModule
+    ButtonModule,
+    GrowlModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'pt'},
+    MessageService
   ],
   bootstrap: [AppComponent]
 })

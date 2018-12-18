@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import {VendasService} from "../vendas/vendas.service";
 import {FormGroup} from "@angular/forms";
+import {MessageService} from "primeng/api";
 
 @Component({
   selector: 'app-vendas-cadastro',
@@ -16,7 +17,9 @@ export class VendasCadastroComponent implements OnInit {
   item: any;
   @Output() vendaSalva = new EventEmitter();
 
-  constructor(private vendaService: VendasService) {
+  constructor(
+    private vendaService: VendasService,
+    private msgService: MessageService) {
   }
 
   ngOnInit() {
@@ -52,6 +55,8 @@ export class VendasCadastroComponent implements OnInit {
       form.reset();
 
       this.novaVenda();
+
+      this.msgService.add({severity: 'success', detail: 'Venda adicionada com sucesso!'});
 
       this.vendaSalva.emit(response);
     })
