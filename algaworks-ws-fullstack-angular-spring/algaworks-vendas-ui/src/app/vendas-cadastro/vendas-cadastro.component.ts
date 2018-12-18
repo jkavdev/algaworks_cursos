@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 
 import {VendasService} from "../vendas/vendas.service";
 import {FormGroup} from "@angular/forms";
@@ -14,6 +14,7 @@ export class VendasCadastroComponent implements OnInit {
   produtos: Array<any>;
   venda: any;
   item: any;
+  @Output() vendaSalva = new EventEmitter();
 
   constructor(private vendaService: VendasService) {
   }
@@ -51,6 +52,8 @@ export class VendasCadastroComponent implements OnInit {
       form.reset();
 
       this.novaVenda();
+
+      this.vendaSalva.emit(response);
     })
   }
 
