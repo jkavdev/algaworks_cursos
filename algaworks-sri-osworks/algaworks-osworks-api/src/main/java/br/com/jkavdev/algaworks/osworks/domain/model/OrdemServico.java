@@ -43,10 +43,10 @@ public class OrdemServico {
 	private StatusOrderServico status;
 
 	@JsonProperty(access = Access.READ_ONLY)
-	private OffsetDateTime dataAbertura;
+	private OffsetDateTime horarioAbertura;
 
 	@JsonProperty(access = Access.READ_ONLY)
-	private OffsetDateTime dataFinalizacao;
+	private OffsetDateTime horarioFinalizacao;
 
 	public Long getId() {
 		return id;
@@ -88,20 +88,20 @@ public class OrdemServico {
 		this.status = status;
 	}
 
-	public OffsetDateTime getDataAbertura() {
-		return dataAbertura;
+	public OffsetDateTime getHorarioAbertura() {
+		return horarioAbertura;
 	}
 
-	public void setDataAbertura(OffsetDateTime dataAbertura) {
-		this.dataAbertura = dataAbertura;
+	public void setHorarioAbertura(OffsetDateTime horarioAbertura) {
+		this.horarioAbertura = horarioAbertura;
 	}
 
-	public OffsetDateTime getDataFinalizacao() {
-		return dataFinalizacao;
+	public OffsetDateTime getHorarioFinalizacao() {
+		return horarioFinalizacao;
 	}
 
-	public void setDataFinalizacao(OffsetDateTime dataFinalizacao) {
-		this.dataFinalizacao = dataFinalizacao;
+	public void setHorarioFinalizacao(OffsetDateTime horarioFinalizacao) {
+		this.horarioFinalizacao = horarioFinalizacao;
 	}
 
 }

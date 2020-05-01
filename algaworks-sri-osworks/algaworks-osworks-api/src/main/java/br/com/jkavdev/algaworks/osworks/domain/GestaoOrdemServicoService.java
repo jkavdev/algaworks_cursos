@@ -28,7 +28,7 @@ public class GestaoOrdemServicoService {
 
 		ordemServico.setCliente(cliente);
 		ordemServico.setStatus(StatusOrderServico.ABERTA);
-		ordemServico.setDataAbertura(OffsetDateTime.now());
+		ordemServico.setHorarioAbertura(OffsetDateTime.now());
 
 		return ordemServicoRepository.save(ordemServico);
 	}
