@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jkavdev.algaworks.osworks.api.model.OrdemServicoInput;
 import br.com.jkavdev.algaworks.osworks.api.model.OrdemServicoModel;
 import br.com.jkavdev.algaworks.osworks.domain.GestaoOrdemServicoService;
 import br.com.jkavdev.algaworks.osworks.domain.model.OrdemServico;
@@ -38,7 +39,8 @@ public class OrdemServicoController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public OrdemServicoModel criar(@Valid @RequestBody OrdemServico ordemServico) {
+	public OrdemServicoModel criar(@Valid @RequestBody OrdemServicoInput osi) {
+		OrdemServico ordemServico = toEntity(osi);
 		return toModel(gestaoOrdemServicoService.criar(ordemServico));
 	}
 
@@ -64,7 +66,13 @@ public class OrdemServicoController {
 	}
 
 	private List<OrdemServicoModel> toCollectionModel(List<OrdemServico> ordensServicos) {
-		return ordensServicos.stream().map(os -> toModel(os)).collect(Collectors.toList());
+		return ordensServicos.stream().map(os -> toModel(os))
+				
+				.collect(Collectors.toList());
+	}
+
+	private OrdemServico toEntity(OrdemServicoInput ordemServicoInput) {
+		return mapper.map(ordemServicoInput, OrdemServico.class);
 	}
 
 }

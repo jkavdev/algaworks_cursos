@@ -7,6 +7,7 @@ public class OrdemServicoModel {
 
 	private Long id;
 	private String nomeCliente;
+	private ResumoClienteModel cliente;
 	private String descricao;
 	private BigDecimal preco;
 	private OffsetDateTime horarioAbertura;
@@ -26,6 +27,14 @@ public class OrdemServicoModel {
 
 	public void setNomeCliente(String nomeCliente) {
 		this.nomeCliente = nomeCliente;
+	}
+
+	public ResumoClienteModel getCliente() {
+		return cliente;
+	}
+
+	public void setCliente(ResumoClienteModel cliente) {
+		this.cliente = cliente;
 	}
 
 	public String getDescricao() {
