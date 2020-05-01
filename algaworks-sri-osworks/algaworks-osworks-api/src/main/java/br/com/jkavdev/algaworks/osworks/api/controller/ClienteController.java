@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jkavdev.algaworks.osworks.domain.CadastroClienteService;
 import br.com.jkavdev.algaworks.osworks.domain.model.Cliente;
 import br.com.jkavdev.algaworks.osworks.domain.repository.ClienteRepository;
 
@@ -32,6 +33,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository clienteRepository;
+	
+	@Autowired
+	private CadastroClienteService cadastroClienteService;
 
 	@GetMapping("/clientes-1")
 	public List<Cliente> listarManager() {
@@ -60,11 +64,12 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	public Cliente criar(@Valid @RequestBody Cliente cliente) {
-		return clienteRepository.save(cliente);
+		
+		return cadastroClienteService.salvar(cliente);
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Cliente> criar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
+	public ResponseEntity<Cliente> alterar(@PathVariable Long id, @Valid @RequestBody Cliente cliente) {
 
 		if (!clienteRepository.existsById(id)) {
 			return ResponseEntity.notFound().build();
@@ -81,7 +86,7 @@ public class ClienteController {
 		if (!clienteRepository.existsById(id)) {
 			return ResponseEntity.notFound().build();
 		}
-		clienteRepository.deleteById(id);
+		cadastroClienteService.remover(id);
 
 		return ResponseEntity.noContent().build();
 	}
