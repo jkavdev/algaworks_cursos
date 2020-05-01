@@ -1,6 +1,6 @@
 package br.com.jkavdev.algaworks.osworks.api.exceptionhandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Problema {
 
 	private Integer status;
-	private LocalDateTime horario;
+	private OffsetDateTime horario;
 	private String titulo;
 
 	private List<Campo> campos;
@@ -50,11 +50,11 @@ public class Problema {
 		this.status = status;
 	}
 
-	public LocalDateTime getHorario() {
+	public OffsetDateTime getHorario() {
 		return horario;
 	}
 
-	public void setHorario(LocalDateTime horario) {
+	public void setHorario(OffsetDateTime horario) {
 		this.horario = horario;
 	}
 
