@@ -1,0 +1,3 @@
+INSERT INTO ordem_servico (cliente_id, data_abertura, descricao, preco, status) VALUES (1, '2020-08-22T23:07:14.932', 'Conserto do LapTop', 125.5, 'ABERTA');
+INSERT INTO ordem_servico (cliente_id, data_abertura, descricao, preco, status) VALUES (2, '2020-08-22T23:07:14.932', 'Conserto do LapTop', 360, 'CANCELADA');
+INSERT INTO ordem_servico (cliente_id, data_abertura, data_finalizacao, descricao, preco, status) VALUES (3, '2020-08-22T23:07:14.932', '2020-08-23T02:07:14.932', 'Conserto do LapTop', 50, 'FINALIZADA');

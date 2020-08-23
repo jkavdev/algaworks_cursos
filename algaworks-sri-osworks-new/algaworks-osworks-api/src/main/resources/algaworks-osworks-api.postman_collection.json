@@ -1,0 +1,256 @@
+{
+	"info": {
+		"_postman_id": "37aca43c-32a0-499c-83a8-fab3b90366a4",
+		"name": "new-algaworks-osworks-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "buscar cliente",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar clientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adicionar cliente",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Putri\",\r\n    \"telefone\": \"9934s6554\",\r\n    \"email\": \"putri@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "atualizar cliente",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Putri\",\r\n    \"telefone\": \"99346554\",\r\n    \"email\": \"putri@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/clientes/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "remover cliente",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/clientes/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "criar ordem de servico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n   \"cliente\":{\r\n       \"id\":2\r\n   },\r\n    \"descricao\":\"Teste\",\r\n    \"preco\":654.4,\r\n    \"dataFinalizacao\": \"2020-08-22T23:07:14.932\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ordens-servico/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar ordens de servico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ordens-servico/",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar ordem de servico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ordens-servico/3",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "adicionar comentario ordem de servico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"descricao\":\"Teste\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/ordens-servico/5/comentarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						"5",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "buscar comentarios ordem de servico",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ordens-servico/4/comentarios",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						"4",
+						"comentarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "finalizar ordem de servico",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/ordens-servico/1/finalizacao",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"ordens-servico",
+						"1",
+						"finalizacao"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
