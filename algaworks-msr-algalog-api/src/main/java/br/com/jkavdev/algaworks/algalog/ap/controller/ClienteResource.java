@@ -2,23 +2,22 @@ package br.com.jkavdev.algaworks.algalog.ap.controller;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jkavdev.algaworks.algalog.domain.model.Cliente;
+import br.com.jkavdev.algaworks.algalog.domain.repository.ClienteRepository;
 
 @RestController
 public class ClienteResource {
 	
-	@PersistenceContext
-	private EntityManager manager;
+	@Autowired
+	private ClienteRepository repository;
 	
 	@GetMapping("/clientes")
 	private List<Cliente> listar(){
-		return manager.createQuery("from Cliente", Cliente.class).getResultList();
+		return repository.findAll();
 	}
 
 }
