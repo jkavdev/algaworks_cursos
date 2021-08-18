@@ -11,19 +11,19 @@ import lombok.Setter;
 @Embeddable
 public class Destinatario {
 	
-	@Column(name = "destinario_nome")
+	@Column(name = "destinatario_nome")
 	private String nome;
 	
-	@Column(name = "destinario_logradouro")
+	@Column(name = "destinatario_logradouro")
 	private String logradouro;
 	
-	@Column(name = "destinario_numero")
+	@Column(name = "destinatario_numero")
 	private String numero;
 	
-	@Column(name = "destinario_complemento")
+	@Column(name = "destinatario_complemento")
 	private String complemento;
 	
-	@Column(name = "destinario_bairro")
+	@Column(name = "destinatario_bairro")
 	private String bairro;
 
 }

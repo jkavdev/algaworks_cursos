@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.persistence.Embedded;
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import lombok.Setter;
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Getter
 @Setter
+@Entity
 public class Entrega {
 	
 	@EqualsAndHashCode.Include
@@ -30,15 +32,15 @@ public class Entrega {
 	private Cliente cliente;
 	
 	@Embedded
-	private Destinatario destinario;
+	private Destinatario destinatario;
 	
 	private BigDecimal taxa;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusEntrega status;
 	
-	private LocalDateTime horarioPedido;
+	private LocalDateTime dataPedido;
 	
-	private LocalDateTime horarioFinalizacao;
+	private LocalDateTime dataFinalizacao;
 
 }
