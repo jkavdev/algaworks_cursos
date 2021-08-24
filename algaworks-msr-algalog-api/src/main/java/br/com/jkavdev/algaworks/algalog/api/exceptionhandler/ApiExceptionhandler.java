@@ -29,7 +29,7 @@ public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-
+		
 		List<Campo> campos = ex.getBindingResult().getAllErrors().stream().map(error -> {
 			return new ErroRequisicao.Campo(((FieldError) error).getField(),
 					messageSource.getMessage(error, LocaleContextHolder.getLocale()));
@@ -43,15 +43,16 @@ public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
 
 		return handleExceptionInternal(ex, erro, headers, status, request);
 	}
-	
+
 	@ExceptionHandler(NegocioException.class)
-	public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request){
+	public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request) {
+		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ErroRequisicao erro = new ErroRequisicao();
 		erro.setDataHora(LocalTime.now());
 		erro.setStatus(status.value());
 		erro.setTitulo(ex.getMessage());
-		
+
 		return handleExceptionInternal(ex, erro, new HttpHeaders(), status, request);
 	}
 
