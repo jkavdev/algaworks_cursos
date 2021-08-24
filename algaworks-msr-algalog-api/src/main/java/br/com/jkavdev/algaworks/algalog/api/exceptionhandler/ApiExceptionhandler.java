@@ -13,10 +13,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import br.com.jkavdev.algaworks.algalog.api.exceptionhandler.ErroRequisicao.Campo;
+import br.com.jkavdev.algaworks.algalog.domain.exception.NegocioException;
 
 @ControllerAdvice
 public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
@@ -40,6 +42,17 @@ public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
 		erro.setTitulo("campo(s) inválido(s)!");
 
 		return handleExceptionInternal(ex, erro, headers, status, request);
+	}
+	
+	@ExceptionHandler(NegocioException.class)
+	public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request){
+		HttpStatus status = HttpStatus.BAD_REQUEST;
+		ErroRequisicao erro = new ErroRequisicao();
+		erro.setDataHora(LocalTime.now());
+		erro.setStatus(status.value());
+		erro.setTitulo(ex.getMessage());
+		
+		return handleExceptionInternal(ex, erro, new HttpHeaders(), status, request);
 	}
 
 }

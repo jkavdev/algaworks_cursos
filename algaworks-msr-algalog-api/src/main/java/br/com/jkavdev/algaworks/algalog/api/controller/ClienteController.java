@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jkavdev.algaworks.algalog.domain.model.Cliente;
 import br.com.jkavdev.algaworks.algalog.domain.repository.ClienteRepository;
+import br.com.jkavdev.algaworks.algalog.domain.service.ClientesService;
 
 @RestController
 @RequestMapping("/clientes")
@@ -26,6 +27,9 @@ public class ClienteController {
 
 	@Autowired
 	private ClienteRepository repository;
+	
+	@Autowired
+	private ClientesService service;
 
 	@GetMapping
 	private List<Cliente> listar() {
@@ -41,7 +45,7 @@ public class ClienteController {
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public Cliente adicionar(@RequestBody @Valid Cliente cliente) {
-		return repository.save(cliente);
+		return service.salvar(cliente);
 	}
 
 	@PutMapping("/{clienteId}")
