@@ -12,13 +12,17 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
+import br.com.jkavdev.algaworks.algalog.domain.ValidationGroups;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -35,9 +39,14 @@ public class Entrega {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	@Valid // ativa as validacoes do objeto cliente
+	@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class) // indicando o grupo que queremos validar
+	@NotNull
 	@ManyToOne
 	private Cliente cliente;
 
+	@Valid
+	@NotNull
 	@Embedded
 	private Destinario destinatario;
 
