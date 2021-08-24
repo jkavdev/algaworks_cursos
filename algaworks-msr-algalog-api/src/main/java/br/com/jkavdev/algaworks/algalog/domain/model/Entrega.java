@@ -16,6 +16,8 @@ import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -42,12 +44,15 @@ public class Entrega {
 	@NotNull
 	private BigDecimal taxa;
 
+	@JsonProperty(access = Access.READ_ONLY)
 	@Enumerated(EnumType.STRING)
 	private StatusEntrega status;
 
+	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "data_pedido")
 	private LocalDateTime dataPedido;
 
+	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "data_finalizacao")
 	private LocalDateTime dataFinalizacao;
 
