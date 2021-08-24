@@ -33,7 +33,7 @@ public class Cliente {
 	private String email;
 
 	@NotBlank
-	@Size(max = 60)
+	@Size(max = 20)
 	private String telefone;
 
 }
