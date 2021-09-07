@@ -15,7 +15,7 @@ public class EntregaModel {
 
 	private String nomeCliente;
 	
-	private DestinarioModel destinario;
+	private DestinarioModel destinatario;
 
 	private BigDecimal taxa;
 

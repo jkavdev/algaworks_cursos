@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +31,9 @@ public class EntregaController {
 
 	@Autowired
 	private EntregaRepository repository;
+	
+	@Autowired
+	private ModelMapper mapper;
 
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
@@ -45,24 +49,7 @@ public class EntregaController {
 	@GetMapping("{entregaId}")
 	public ResponseEntity<EntregaModel> buscar(@PathVariable Long entregaId) {
 		return repository.findById(entregaId).map(entrega -> {
-
-			EntregaModel model = new EntregaModel();
-			model.setDataFinalizacao(entrega.getDataFinalizacao());
-			model.setDataPedido(entrega.getDataPedido());
-			model.setId(entrega.getId());
-			model.setNomeCliente(entrega.getCliente().getNome());
-			model.setStatus(entrega.getStatus());
-			model.setTaxa(entrega.getTaxa());
-			
-			DestinarioModel destinarioModel = new DestinarioModel();
-			destinarioModel.setBairro(entrega.getDestinatario().getBairro());
-			destinarioModel.setComplemento(entrega.getDestinatario().getComplemento());
-			destinarioModel.setLogradouro(entrega.getDestinatario().getLogradouro());
-			destinarioModel.setNome(entrega.getDestinatario().getNome());
-			destinarioModel.setNumero(entrega.getDestinatario().getNumero());
-			
-			model.setDestinario(destinarioModel);
-
+			EntregaModel model = mapper.map(entrega, EntregaModel.class);
 			return ResponseEntity.ok(model);
 		}).orElse(ResponseEntity.notFound().build());
 	}
