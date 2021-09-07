@@ -1,6 +1,6 @@
 package br.com.jkavdev.algaworks.algalog.api.exceptionhandler;
 
-import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -19,7 +19,7 @@ public class ErroRequisicao {
 
 	private String titulo;
 
-	private LocalTime dataHora;
+	private OffsetDateTime dataHora;
 
 	private List<Campo> campos;
 

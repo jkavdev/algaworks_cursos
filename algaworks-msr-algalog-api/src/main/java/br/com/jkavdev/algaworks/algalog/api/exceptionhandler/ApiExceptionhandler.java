@@ -1,6 +1,6 @@
 package br.com.jkavdev.algaworks.algalog.api.exceptionhandler;
 
-import java.time.LocalTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -37,7 +37,7 @@ public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
 
 		ErroRequisicao erro = new ErroRequisicao();
 		erro.setCampos(campos);
-		erro.setDataHora(LocalTime.now());
+		erro.setDataHora(OffsetDateTime.now());
 		erro.setStatus(status.value());
 		erro.setTitulo("campo(s) inválido(s)!");
 
@@ -49,7 +49,7 @@ public class ApiExceptionhandler extends ResponseEntityExceptionHandler {
 		
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 		ErroRequisicao erro = new ErroRequisicao();
-		erro.setDataHora(LocalTime.now());
+		erro.setDataHora(OffsetDateTime.now());
 		erro.setStatus(status.value());
 		erro.setTitulo(ex.getMessage());
 

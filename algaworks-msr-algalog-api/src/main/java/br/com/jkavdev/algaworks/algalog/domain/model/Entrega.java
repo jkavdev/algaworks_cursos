@@ -1,7 +1,7 @@
 package br.com.jkavdev.algaworks.algalog.domain.model;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Embedded;
@@ -59,10 +59,10 @@ public class Entrega {
 
 	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "data_pedido")
-	private LocalDateTime dataPedido;
+	private OffsetDateTime dataPedido;
 
 	@JsonProperty(access = Access.READ_ONLY)
 	@Column(name = "data_finalizacao")
-	private LocalDateTime dataFinalizacao;
+	private OffsetDateTime dataFinalizacao;
 
 }

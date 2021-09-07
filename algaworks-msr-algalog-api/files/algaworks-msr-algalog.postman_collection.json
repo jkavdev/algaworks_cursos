@@ -33,7 +33,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"nome\":\"Morsa\",\r\n    \"telefone\":\"999666111\",\r\n    \"email\":\"morsa@email.com\"\r\n}",
+							"raw": "{\r\n    \"nome\":\"Morsa\",\r\n    \"telefone\":\"999666111\",\r\n    \"email\":\"jhonatan@email.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -131,7 +131,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"cliente\": {\r\n        \"id\": 1\r\n    },\r\n    \"destinatario\":{\r\n        \"nome\": \"jhonatan\",\r\n        \"logradouro\": \"qr 12 casa 15\",\r\n        \"numero\": \"15\",\r\n        \"bairro\": \"itapua 1\",\r\n        \"complemento\": \"casa\"\r\n    }\r\n}",
+							"raw": "{\r\n    \"cliente\": {\r\n        \"id\": \"1\"\r\n    },\r\n    \"taxa\":1222,\r\n    \"destinatario\":{\r\n        \"nome\": \"jhonatan\",\r\n        \"logradouro\": \"qr 12 casa 15\",\r\n        \"numero\": \"15\",\r\n        \"bairro\": \"itapua 1\",\r\n        \"complemento\": \"casa\"\r\n    }\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -146,6 +146,117 @@
 							"port": "8080",
 							"path": [
 								"entregas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "entregas - buscar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/entregas/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "entregas - listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/entregas",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "entregas - finalizar",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/entregas/1/finalizacao",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"1",
+								"finalizacao"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "ocorrencias",
+			"item": [
+				{
+					"name": "ocorrencias - registrar",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descricao\": \"ninguem tava em casa\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/entregas/1/ocorrencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"1",
+								"ocorrencias"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ocorrencias - listar",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/entregas/1/ocorrencias",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"entregas",
+								"1",
+								"ocorrencias"
 							]
 						}
 					},
