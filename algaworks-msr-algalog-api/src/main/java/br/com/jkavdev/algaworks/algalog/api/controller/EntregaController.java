@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.jkavdev.algaworks.algalog.api.exceptionhandler.EntregaRepository;
+import br.com.jkavdev.algaworks.algalog.api.model.DestinarioModel;
+import br.com.jkavdev.algaworks.algalog.api.model.EntregaModel;
 import br.com.jkavdev.algaworks.algalog.domain.model.Entrega;
 import br.com.jkavdev.algaworks.algalog.domain.service.SolicitacaoEntregaService;
 
@@ -41,8 +43,28 @@ public class EntregaController {
 	}
 
 	@GetMapping("{entregaId}")
-	public ResponseEntity<Entrega> buscar(@PathVariable Long entregaId) {
-		return repository.findById(entregaId).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
+	public ResponseEntity<EntregaModel> buscar(@PathVariable Long entregaId) {
+		return repository.findById(entregaId).map(entrega -> {
+
+			EntregaModel model = new EntregaModel();
+			model.setDataFinalizacao(entrega.getDataFinalizacao());
+			model.setDataPedido(entrega.getDataPedido());
+			model.setId(entrega.getId());
+			model.setNomeCliente(entrega.getCliente().getNome());
+			model.setStatus(entrega.getStatus());
+			model.setTaxa(entrega.getTaxa());
+			
+			DestinarioModel destinarioModel = new DestinarioModel();
+			destinarioModel.setBairro(entrega.getDestinatario().getBairro());
+			destinarioModel.setComplemento(entrega.getDestinatario().getComplemento());
+			destinarioModel.setLogradouro(entrega.getDestinatario().getLogradouro());
+			destinarioModel.setNome(entrega.getDestinatario().getNome());
+			destinarioModel.setNumero(entrega.getDestinatario().getNumero());
+			
+			model.setDestinario(destinarioModel);
+
+			return ResponseEntity.ok(model);
+		}).orElse(ResponseEntity.notFound().build());
 	}
 
 }
