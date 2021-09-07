@@ -13,7 +13,7 @@ public class EntregaModel {
 
 	private Long id;
 
-	private String nomeCliente;
+	private ClienteResumoModel cliente;
 	
 	private DestinarioModel destinatario;
 

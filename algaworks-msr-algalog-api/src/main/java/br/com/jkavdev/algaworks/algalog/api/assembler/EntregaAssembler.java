@@ -6,6 +6,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import br.com.jkavdev.algaworks.algalog.api.input.EntregaInput;
 import br.com.jkavdev.algaworks.algalog.api.model.EntregaModel;
 import br.com.jkavdev.algaworks.algalog.domain.model.Entrega;
 
@@ -21,6 +22,10 @@ public class EntregaAssembler {
 
 	public List<EntregaModel> toCollectionModel(List<Entrega> entregas) {
 		return entregas.stream().map(this::toModel).toList();
+	}
+
+	public Entrega toEntity(EntregaInput input) {
+		return mapper.map(input, Entrega.class);
 	}
 
 }
