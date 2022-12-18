@@ -5,7 +5,7 @@ import org.springframework.stereotype.Component;
 import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
 import br.com.jkavdev.algaworks.algafood.notificacao.Notificador;
 
-@Component
+//@Component
 public class AtivacaoClienteService {
 
 	private Notificador notificador;
