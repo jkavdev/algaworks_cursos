@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import br.com.jkavdev.algaworks.algafood.notificacao.Notificador;
 import br.com.jkavdev.algaworks.algafood.service.AtivacaoClienteService;
 
-@Configuration
+//@Configuration
 public class ServiceConfig {
 
 	/**
