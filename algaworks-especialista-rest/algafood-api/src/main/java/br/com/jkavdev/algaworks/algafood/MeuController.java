@@ -10,7 +10,7 @@ public class MeuController {
 	@GetMapping("/hello")
 	@ResponseBody
 	public String hello() {
-		return "Funcionando................";
+		return "Funcionando teste devtolls................";
 	}
 
 }
