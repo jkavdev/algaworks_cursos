@@ -3,12 +3,10 @@ package br.com.jkavdev.algaworks.algafood.service;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
 
 import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
-import br.com.jkavdev.algaworks.algafood.notificacao.NivelUrgerncia;
-import br.com.jkavdev.algaworks.algafood.notificacao.Notificador;
-import br.com.jkavdev.algaworks.algafood.notificacao.TipoDoNotificador;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.PreDestroy;
 
@@ -34,9 +32,15 @@ public class AtivacaoClienteService implements DisposableBean, InitializingBean 
 	/**
 	 * @TipoDoNotificador(NivelUrgerncia.NORMAL) - utilizando o bean com o identificador definido pela anotacao 
 	 */
-	@TipoDoNotificador(NivelUrgerncia.NORMAL)	
+//	@TipoDoNotificador(NivelUrgerncia.NORMAL)	
+//	@Autowired
+//	private Notificador notificador;
+	
+	/**
+	 * ApplicationEventPublisher - bean responsavel por notificar um evento indicado
+	 */
 	@Autowired
-	private Notificador notificador;
+	private ApplicationEventPublisher publisher;
 	
 	/**
 	 * @PostConstruct - sera chamado depois da construcao do bean 
@@ -57,8 +61,10 @@ public class AtivacaoClienteService implements DisposableBean, InitializingBean 
 	public void ativar(Cliente cliente) {
 		cliente.ativar();
 
-		notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
-
+//		notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+		
+//		publicando um evento de cliente ativado
+		publisher.publishEvent(new ClienteAtivadoEvent(cliente));
 	}
 
 	/**
