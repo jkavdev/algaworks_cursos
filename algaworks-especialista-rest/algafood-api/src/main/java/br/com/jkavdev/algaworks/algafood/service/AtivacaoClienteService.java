@@ -18,7 +18,7 @@ public class AtivacaoClienteService {
 	/**
 	 * @Autowired - a classe pode haver mais de um construtor, mas o contrutor que deve preencher o bean tem que ser definido com @Autowired
 	 */
-	@Autowired
+	@Autowired(required = false)
 	public AtivacaoClienteService(Notificador notificador) {
 		super();
 		this.notificador = notificador;
@@ -30,7 +30,13 @@ public class AtivacaoClienteService {
 
 	public void ativar(Cliente cliente) {
 		cliente.ativar();
-		notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+		
+		if(notificador == null) {
+			System.out.println("Nao existe notificar mas cliente foi ativado");
+		} else {
+			notificador.notificar(cliente, "Seu cadastro no sistema está ativo");
+		}
+		
 	}
 	
 	/**
