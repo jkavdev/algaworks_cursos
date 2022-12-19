@@ -21,22 +21,17 @@ import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
  * @TipoDoNotificador(NivelUrgerncia.NORMAL) - utilizando a definicao do apelido pela anotacao
  */
 @TipoDoNotificador(NivelUrgerncia.NORMAL)
-
-/**
- * @Profile("prod") - definindo o profile que esse bean sera registrado
- * se o profile setado ao rodar o projeto for diferente desse, esse bean nem sera registrado
- */
-@Profile("prod")
+@Profile("dev")
 @Component
-public class NotificadorEmail implements Notificador {
+public class NotificadorEmailMock implements Notificador {
 	
-	public NotificadorEmail() {
-		System.out.println("NotificadorEmail");
+	public NotificadorEmailMock() {
+		System.out.println("NotificadorEmailMock");
 	}
 
 	@Override
 	public void notificar(Cliente cliente, String mensagem) {
-		System.out.printf("Notificando %s através do e-mail %s: %s\n", cliente.getNome(), cliente.getEmail(), mensagem);
+		System.out.printf("MOCK: Notificando %s através do e-mail %s: %s\n", cliente.getNome(), cliente.getEmail(), mensagem);
 	}
 
 }
