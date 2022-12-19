@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
+import br.com.jkavdev.algaworks.algafood.notificacao.NivelUrgerncia;
 import br.com.jkavdev.algaworks.algafood.notificacao.Notificador;
+import br.com.jkavdev.algaworks.algafood.notificacao.TipoDoNotificador;
 
 @Component
 public class AtivacaoClienteService {
@@ -19,9 +21,13 @@ public class AtivacaoClienteService {
 	
 	/**
 	 * @Qualifier("email") - utilizando o apelido do bean para receber uma instancia
-	 *
 	 */
-	@Qualifier("email")
+//	@Qualifier("email")
+	
+	/**
+	 * @TipoDoNotificador(NivelUrgerncia.NORMAL) - utilizando o bean com o identificador definido pela anotacao 
+	 */
+	@TipoDoNotificador(NivelUrgerncia.NORMAL)	
 	@Autowired
 	private Notificador notificador;
 
