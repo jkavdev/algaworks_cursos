@@ -1,6 +1,7 @@
 package br.com.jkavdev.algaworks.algafood.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
@@ -16,6 +17,11 @@ public class AtivacaoClienteService {
 //	@Autowired
 //	private List<Notificador> notificadores;
 	
+	/**
+	 * @Qualifier("email") - utilizando o apelido do bean para receber uma instancia
+	 *
+	 */
+	@Qualifier("email")
 	@Autowired
 	private Notificador notificador;
 

@@ -1,6 +1,6 @@
 package br.com.jkavdev.algaworks.algafood.notificacao;
 
-import org.springframework.context.annotation.Primary;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
@@ -11,7 +11,13 @@ import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
  *
  */
 
-@Primary
+//@Primary
+
+/**
+ * @Qualifier("email") - define um apelido para o bean
+ *
+ */
+@Qualifier("email")	
 @Component
 public class NotificadorEmail implements Notificador {
 
