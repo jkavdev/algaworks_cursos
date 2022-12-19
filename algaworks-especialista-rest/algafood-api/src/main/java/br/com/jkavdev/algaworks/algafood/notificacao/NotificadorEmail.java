@@ -1,5 +1,6 @@
 package br.com.jkavdev.algaworks.algafood.notificacao;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
@@ -30,12 +31,23 @@ import br.com.jkavdev.algaworks.algafood.modelo.Cliente;
 @Component
 public class NotificadorEmail implements Notificador {
 	
+	/**
+	 * @Value("${notificador.email.host-servidor}") - acessando propriedade definida no arquivo de propriedades
+	 */
+	@Value("${notificador.email.host-servidor}")
+	private String host;
+	
+	@Value("${notificador.email.porta-servidor}")
+	private Integer portaHost;
+	
 	public NotificadorEmail() {
-		System.out.println("NotificadorEmail");
+		System.out.println("NotificadorEmail " + host + " " + portaHost);
 	}
 
 	@Override
 	public void notificar(Cliente cliente, String mensagem) {
+		System.out.println("NotificadorEmail " + host + " " + portaHost);
+		
 		System.out.printf("Notificando %s através do e-mail %s: %s\n", cliente.getNome(), cliente.getEmail(), mensagem);
 	}
 
