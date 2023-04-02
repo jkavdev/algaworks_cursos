@@ -97,4 +97,22 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertNotNull(expectedProduto);
     }
 
+    @Test
+    public void removendoObjetoComRemove() {
+        final var produto = entityManager.find(Produto.class, 1);
+
+        entityManager.getTransaction().begin();
+        // ao remover um registro que realmente existe no banco, o hibernate ate faz o select pra verificar a existencia
+        // mas no momento de remover da erro, pois o hibernate nao reconhece a entidade que ira ser removida
+        // por isso, realizamos o find, e depois o remove
+
+        // quando o registro e removido, o hibernate nao mantem o registro na memoria
+        entityManager.remove(produto);
+        entityManager.getTransaction().commit();
+
+        // por isso que ao fazermos o find, realiza a busca no banco de dados
+        final var expectedProduto = entityManager.find(Produto.class, 1);
+        Assert.assertNull(expectedProduto);
+    }
+
 }
