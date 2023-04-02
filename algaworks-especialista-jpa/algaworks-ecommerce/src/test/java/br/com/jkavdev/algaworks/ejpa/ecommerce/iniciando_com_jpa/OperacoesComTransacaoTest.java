@@ -137,7 +137,18 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void atualizandoRegistrosSemMerge() {
-        final var produto = entityManager.find(Produto.class, 1);
+        Produto produto = new Produto();
+
+        produto.setId(10);
+        produto.setNome("qualquer");
+        produto.setDescricao("qualquer");
+        produto.setPreco(new BigDecimal(500));
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(produto);
+        entityManager.getTransaction().commit();
+
+        produto = entityManager.find(Produto.class, produto.getId());
 
         // nesse caso, o hibernate ira apenas atualizar o quer for preenchido/alterado
         // pois os outros campos estao preenchidos de acordo com o que veio do banco de dados
@@ -234,6 +245,22 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         final var expectedProdutoAlterado = entityManager.find(Produto.class, produto.getId());
         Assert.assertNotNull(expectedProdutoAlterado);
         Assert.assertEquals("alterado", expectedProduto.getNome());
+    }
+
+    @Test
+    public void impedirOperacaoComBancoDeDados() {
+        final var produto = entityManager.find(Produto.class, 1);
+
+        // ao tornar a entidade detach qualquer operacao, nao sera efetivada ou aplicada
+        // pois eh uma entidade que nao esta mais no contexto jpa
+        entityManager.detach(produto);
+
+        entityManager.getTransaction().begin();
+        produto.setNome("qualquer");
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertEquals("Kindle", expectedProduto.getNome());
     }
 
 }
