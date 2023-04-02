@@ -6,23 +6,21 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class Produto {
+public class NotaFiscal {
 
     @Id
     @EqualsAndHashCode.Include
     private Integer id;
 
-    private String nome;
+    private Integer pedidoId;
 
-    private String descricao;
+    private String xml;
 
-    private BigDecimal preco;
-
-    private Integer categoriaId;
+    private Date dataEmissao;
 }

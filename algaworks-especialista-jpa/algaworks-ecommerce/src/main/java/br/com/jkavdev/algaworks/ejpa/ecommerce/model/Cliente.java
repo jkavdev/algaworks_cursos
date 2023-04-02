@@ -23,6 +23,8 @@ public class Cliente {
 
     private String nome;
 
+    private SexoCliente sexo;
+
     public Cliente(String nome) {
         this.nome = nome;
     }
