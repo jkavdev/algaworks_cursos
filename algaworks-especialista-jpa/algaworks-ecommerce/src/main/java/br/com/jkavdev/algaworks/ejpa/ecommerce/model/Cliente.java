@@ -7,8 +7,10 @@ import lombok.Setter;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "cliente")
 // precisamos do construtor padrao, caso queiramos trazer essa entidade do banco de dados
 // pois criamos um construtor com parametros
 @NoArgsConstructor
