@@ -14,6 +14,7 @@ import javax.persistence.*;
 public class PagamentoCartao {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     private Integer id;
 

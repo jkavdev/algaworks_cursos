@@ -11,7 +11,6 @@ public class MapeandoEnumeracoesTest extends EntityManagerTest {
     @Test
     public void inserirCliente() {
         final var cliente = new Cliente();
-        cliente.setId(55);
         cliente.setNome("Maria Estela");
         cliente.setSexo(SexoCliente.FEMININO);
 

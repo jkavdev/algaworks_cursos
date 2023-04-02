@@ -13,7 +13,6 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void inserirOPrimeiroObjetoEBuscandoEmMemoria() {
         final var produto = new Produto();
 
-        produto.setId(2);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
@@ -32,7 +31,6 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void inserirOPrimeiroObjetoEBuscandoNoBanco() {
         final var produto = new Produto();
 
-        produto.setId(3);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
@@ -52,11 +50,10 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertNotNull(expectedProduto);
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void inserirOPrimeiroObjetoSemTransacao() {
         final var produto = new Produto();
 
-        produto.setId(4);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
@@ -64,6 +61,9 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         // a operacao de insercao foi postergada ate o final
         // todo o processamento que o hibernate encontrar com essa entidade, buscara dos dados em memoria
         // pois nao houve nenhuma acao, que obrigue o hibernate ir ao banco de dados de fato
+
+        // agora que adicionamos o auto increment da chave primaria, e o jpa nao pode atribuir o valor da chave primaria
+        // vai da erro na busca, pois o id ta nulo
         entityManager.persist(produto);
 
         // por isso no momento que tentamos consultar a entidade e buscada da memoria,
@@ -76,7 +76,6 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void inserirOPrimeiroObjetoEBuscandoNoBancoFlush() {
         final var produto = new Produto();
 
-        produto.setId(5);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
@@ -99,7 +98,15 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
 
     @Test
     public void removendoObjetoComRemove() {
-        final var produto = entityManager.find(Produto.class, 1);
+        Produto produto = new Produto();
+
+        produto.setNome("qualquer");
+        produto.setDescricao("qualquer");
+        produto.setPreco(new BigDecimal(500));
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(produto);
+        entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
         // ao remover um registro que realmente existe no banco, o hibernate ate faz o select pra verificar a existencia
@@ -111,7 +118,7 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         entityManager.getTransaction().commit();
 
         // por isso que ao fazermos o find, realiza a busca no banco de dados
-        final var expectedProduto = entityManager.find(Produto.class, 1);
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
         Assert.assertNull(expectedProduto);
     }
 
@@ -139,7 +146,6 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void atualizandoRegistrosSemMerge() {
         Produto produto = new Produto();
 
-        produto.setId(10);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
@@ -165,17 +171,20 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertEquals("qualquer", expectedProduto.getNome());
     }
 
-    @Test
+    @Test(expected = IllegalArgumentException.class)
     public void inserindoRegistrosComMerge() {
         final var produto = new Produto();
 
-        produto.setId(6);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));
 
         // jpa fara o select para verificar a existencia da entidade,
         // e posteriormente um insert, uma vez que a mesma nao existe no banco de dados
+
+        // merge utilizado para inserir registro com a estrategia de auto incremento nao funciona
+        // acredito que o jpa pense que a acao eh de um insert, mas como as funcionalidades do merge, de apenas atualizar o que ta sendo passado
+        // e como o valor do id ta nulo, nao aciona a acao do auto incremento
         entityManager.getTransaction().begin();
         entityManager.merge(produto);
         entityManager.getTransaction().commit();
@@ -189,7 +198,6 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void diferencaEntrePersistEMergePersist() {
         final var produto = new Produto();
 
-        produto.setId(7);
         produto.setNome("qualquer");
         produto.setDescricao("qualquer");
         produto.setPreco(new BigDecimal(500));

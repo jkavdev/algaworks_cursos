@@ -10,7 +10,6 @@ public class ClienteTest extends EntityManagerTest {
     @Test
     public void inserirCliente() {
         final var cliente = new Cliente("Mario Gentili");
-        cliente.setId(2);
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
@@ -32,7 +31,6 @@ public class ClienteTest extends EntityManagerTest {
     @Test
     public void atualizandoCliente() {
         final var cliente = new Cliente("Pedro Paulo");
-        cliente.setId(3);
 
         entityManager.getTransaction().begin();
         entityManager.persist(cliente);
