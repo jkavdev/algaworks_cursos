@@ -115,4 +115,41 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         Assert.assertNull(expectedProduto);
     }
 
+    @Test
+    public void atualizandoRegistros() {
+        final var produto = new Produto();
+
+        // nesse caso, o hibernate fara a atualizacao de acordo com o objeto passado pra ele
+        // removendo os outros campos que ja estejam preenchidos, pois os mesmos estao nulos nesse momento
+        produto.setId(1);
+        produto.setNome("qualquer");
+
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProduto);
+        Assert.assertEquals("qualquer", expectedProduto.getNome());
+        Assert.assertNull(expectedProduto.getDescricao());
+        Assert.assertNull(expectedProduto.getPreco());
+    }
+
+    @Test
+    public void atualizandoRegistrosSemMerge() {
+        final var produto = entityManager.find(Produto.class, 1);
+
+        produto.setNome("qualquer");
+
+        // ao realizar alteracao numa entidade gerenciada pelo jpa, ao final ele sincronizara as alteracoes feitas
+        // caso haja transacao, com o banco de dados, mesmo esquema do persiste, caso nao tenha transacao
+        // trabalhara com os objetos em memoria
+        entityManager.getTransaction().begin();
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProduto);
+        Assert.assertEquals("qualquer", expectedProduto.getNome());
+    }
+
 }
