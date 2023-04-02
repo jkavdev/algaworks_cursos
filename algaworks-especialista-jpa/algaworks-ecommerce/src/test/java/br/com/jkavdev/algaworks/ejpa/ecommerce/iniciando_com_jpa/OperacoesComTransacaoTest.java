@@ -139,6 +139,8 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
     public void atualizandoRegistrosSemMerge() {
         final var produto = entityManager.find(Produto.class, 1);
 
+        // nesse caso, o hibernate ira apenas atualizar o quer for preenchido/alterado
+        // pois os outros campos estao preenchidos de acordo com o que veio do banco de dados
         produto.setNome("qualquer");
 
         // ao realizar alteracao numa entidade gerenciada pelo jpa, ao final ele sincronizara as alteracoes feitas
@@ -150,6 +152,88 @@ public class OperacoesComTransacaoTest extends EntityManagerTest {
         final var expectedProduto = entityManager.find(Produto.class, produto.getId());
         Assert.assertNotNull(expectedProduto);
         Assert.assertEquals("qualquer", expectedProduto.getNome());
+    }
+
+    @Test
+    public void inserindoRegistrosComMerge() {
+        final var produto = new Produto();
+
+        produto.setId(6);
+        produto.setNome("qualquer");
+        produto.setDescricao("qualquer");
+        produto.setPreco(new BigDecimal(500));
+
+        // jpa fara o select para verificar a existencia da entidade,
+        // e posteriormente um insert, uma vez que a mesma nao existe no banco de dados
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProduto);
+        Assert.assertEquals("qualquer", expectedProduto.getNome());
+    }
+
+    @Test
+    public void diferencaEntrePersistEMergePersist() {
+        final var produto = new Produto();
+
+        produto.setId(7);
+        produto.setNome("qualquer");
+        produto.setDescricao("qualquer");
+        produto.setPreco(new BigDecimal(500));
+
+        // o persiste insere o banco, e torna o objeto uma entidade gerenciavel pelo jpa
+        // se houver alguma alteracao a essa entidade, dentro do escopo de transacao a mesma
+        // sera sincronizada com mo banco de dados com eh caso do update
+        entityManager.getTransaction().begin();
+        entityManager.persist(produto);
+
+        produto.setNome("alterado");
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProduto);
+        Assert.assertEquals("alterado", expectedProduto.getNome());
+    }
+
+    @Test
+    public void diferencaEntrePersistEMergeMerge() {
+        Produto produto = new Produto();
+        produto.setId(1);
+        produto.setNome("qualquer");
+
+        // nesse caso o jpa apenas copiou o objeto para seu contexto, mas o objeto em si, nao eh uma entidade gerenciavel
+        // se fizermos qualquer alteracao nela, a alteracao nao sera reconhecida pela jpa
+        entityManager.getTransaction().begin();
+        entityManager.merge(produto);
+
+        // nao tera efeito
+        produto.setNome("alterado");
+        entityManager.getTransaction().commit();
+
+        final var expectedProduto = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProduto);
+        Assert.assertEquals("qualquer", expectedProduto.getNome());
+
+        // ==================================================================
+
+        produto = new Produto();
+        produto.setId(1);
+        produto.setNome("qualquer");
+
+        // nesse caso estamos tornando o objeto em uma entidade gerenciavel, e atribuindo essa entidade a variavel produto
+        // ai qualquer alteracao que seja feito nela, ao final sera realizada essa sincronizacao com o banco de dados
+        entityManager.getTransaction().begin();
+        produto = entityManager.merge(produto);
+
+        // tera efeito
+        produto.setNome("alterado");
+        entityManager.getTransaction().commit();
+
+        final var expectedProdutoAlterado = entityManager.find(Produto.class, produto.getId());
+        Assert.assertNotNull(expectedProdutoAlterado);
+        Assert.assertEquals("alterado", expectedProduto.getNome());
     }
 
 }
