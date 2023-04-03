@@ -19,8 +19,9 @@ public class NotaFiscal {
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @Column(name = "pedido_id")
-    private Integer pedidoId;
+    @OneToOne
+    @JoinColumn(name = "pedido_id")
+    private Pedido pedido;
 
     private String xml;
 
