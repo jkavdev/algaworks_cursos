@@ -28,7 +28,7 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        final var actualCliente = entityManager.find(Cliente.class, pedido.getId());
+        final var actualCliente = entityManager.find(Cliente.class, cliente.getId());
         Assert.assertFalse(actualCliente.getPedidos().isEmpty());
     }
 
@@ -56,7 +56,7 @@ public class RelacionamentoOneToManyTest extends EntityManagerTest {
 
         entityManager.clear();
 
-        final var expectedPedido = entityManager.find(Pedido.class, item.getId());
+        final var expectedPedido = entityManager.find(Pedido.class, pedido.getId());
         Assert.assertFalse(expectedPedido.getItens().isEmpty());
     }
 

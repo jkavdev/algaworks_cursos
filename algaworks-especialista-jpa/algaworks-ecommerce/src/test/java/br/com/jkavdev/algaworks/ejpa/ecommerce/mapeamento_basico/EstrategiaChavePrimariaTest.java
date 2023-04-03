@@ -18,6 +18,6 @@ public class EstrategiaChavePrimariaTest extends EntityManagerTest {
 
         final var expectedCategoria = entityManager.find(Categoria.class, categoria.getId());
         Assert.assertNotNull(expectedCategoria);
-        Assert.assertEquals(Integer.valueOf(1), expectedCategoria.getId());
+        Assert.assertNotNull(expectedCategoria.getId());
     }
 }

@@ -15,17 +15,20 @@ public class ClienteTest extends EntityManagerTest {
         entityManager.persist(cliente);
         entityManager.getTransaction().commit();
 
-        final var expectedCliente = entityManager.find(Cliente.class, 2);
+        final var expectedCliente = entityManager.find(Cliente.class, cliente.getId());
         Assert.assertEquals("Mario Gentili", expectedCliente.getNome());
     }
 
     @Test
     public void buscandoCliente() {
-        final var expectedCliente = entityManager.find(Cliente.class, 1);
+        final var cliente = new Cliente("Mario Gentili");
 
-        Assert.assertNotNull(expectedCliente);
-        Assert.assertEquals(Integer.valueOf(1), expectedCliente.getId());
-        Assert.assertEquals("Patricia Goes", expectedCliente.getNome());
+        entityManager.getTransaction().begin();
+        entityManager.persist(cliente);
+        entityManager.getTransaction().commit();
+
+        final var expectedCliente = entityManager.find(Cliente.class, cliente.getId());
+        Assert.assertEquals("Mario Gentili", expectedCliente.getNome());
     }
 
     @Test
@@ -48,13 +51,17 @@ public class ClienteTest extends EntityManagerTest {
 
     @Test
     public void removerCliente() {
-        final var cliente = entityManager.find(Cliente.class, 1);
+        final var cliente = new Cliente("Mario Gentili");
+
+        entityManager.getTransaction().begin();
+        entityManager.persist(cliente);
+        entityManager.getTransaction().commit();
 
         entityManager.getTransaction().begin();
         entityManager.remove(cliente);
         entityManager.getTransaction().commit();
 
-        final var exceptedCliente = entityManager.find(Cliente.class, 1);
+        final var exceptedCliente = entityManager.find(Cliente.class, cliente.getId());
 
         Assert.assertNull(exceptedCliente);
     }
