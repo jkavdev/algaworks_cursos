@@ -20,6 +20,10 @@ public class Pedido {
     @EqualsAndHashCode.Include
     private Integer id;
 
+    @ManyToOne
+    @JoinColumn(name = "cliente_id", foreignKey = @ForeignKey(name = "fk_pedido_cliente_cliente_id"))
+    private Cliente cliente;
+
     @Column(name = "data_pedido")
     private LocalDateTime dataPedido;
 
