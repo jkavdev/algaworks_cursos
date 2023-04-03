@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -26,6 +27,9 @@ public class Cliente {
 
     @Enumerated(EnumType.STRING)
     private SexoCliente sexo;
+
+    @OneToMany(mappedBy = "cliente")
+    private List<Pedido> pedidos;
 
     public Cliente(String nome) {
         this.nome = nome;

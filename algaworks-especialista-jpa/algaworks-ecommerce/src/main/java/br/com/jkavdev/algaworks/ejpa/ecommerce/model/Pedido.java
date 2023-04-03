@@ -7,6 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "pedido")
@@ -40,5 +41,8 @@ public class Pedido {
 
     @Embedded
     private EnderecoEntregaPedido endereco;
+
+    @OneToMany(mappedBy = "pedido")
+    private List<ItemPedido> itens;
 
 }
