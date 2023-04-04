@@ -1,6 +1,7 @@
 package br.com.jkavdev.algaworks.ejpa.ecommerce.mapeamento_basico;
 
 import br.com.jkavdev.algaworks.ejpa.ecommerce.EntityManagerTest;
+import br.com.jkavdev.algaworks.ejpa.ecommerce.model.Cliente;
 import br.com.jkavdev.algaworks.ejpa.ecommerce.model.EnderecoEntregaPedido;
 import br.com.jkavdev.algaworks.ejpa.ecommerce.model.Pedido;
 import br.com.jkavdev.algaworks.ejpa.ecommerce.model.StatusPedido;
@@ -14,6 +15,8 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
 
     @Test
     public void analisarMapeamentoEmbutidoTest() {
+        final var cliente = entityManager.find(Cliente.class, 1);
+
         EnderecoEntregaPedido endereco = new EnderecoEntregaPedido();
         endereco.setCep("321");
         endereco.setBairro("321");
@@ -27,6 +30,7 @@ public class MapeamentoObjetoEmbutidoTest extends EntityManagerTest {
         pedido.setTotal(new BigDecimal("500"));
         pedido.setStatus(StatusPedido.AGUARDANDO);
         pedido.setEndereco(endereco);
+        pedido.setCliente(cliente);
 
         entityManager.getTransaction().begin();
         entityManager.persist(pedido);

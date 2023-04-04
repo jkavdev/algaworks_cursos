@@ -19,11 +19,11 @@ public class ItemPedido {
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "pedido_id", foreignKey = @ForeignKey(name = "fk_item_pedido_pedido_pedido_id"))
     private Pedido pedido;
 
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "produto_id", foreignKey = @ForeignKey(name = "fk_item_pedido_produto_produto_id"))
     private Produto produto;
 

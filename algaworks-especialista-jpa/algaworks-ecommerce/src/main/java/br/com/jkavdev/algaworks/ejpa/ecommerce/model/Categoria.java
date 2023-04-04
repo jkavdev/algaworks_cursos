@@ -39,7 +39,7 @@ public class Categoria {
     private String nome;
 
     @ManyToOne
-    @JoinColumn(name = "categoria_pai_id", foreignKey = @ForeignKey(name = "fk_categoria_categoria_categoria_pai_id"))
+    @JoinColumn(name = "categoria_pai_id", foreignKey = @ForeignKey(name = "fk_categoria_categoria_id"))
     private Categoria categoriaPai;
 
     @OneToMany(mappedBy = "categoriaPai")

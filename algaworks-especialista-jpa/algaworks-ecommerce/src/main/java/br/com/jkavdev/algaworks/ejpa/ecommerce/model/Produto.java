@@ -30,7 +30,12 @@ public class Produto {
     @JoinTable(
             name = "produto_categoria",
             joinColumns = @JoinColumn(name = "produto_id"),
-            inverseJoinColumns = @JoinColumn(name = "categoria_id")
+            inverseJoinColumns = @JoinColumn(name = "categoria_id"),
+            foreignKey = @ForeignKey(name = "fk_produto_categoria_produto_produto_id"),
+            inverseForeignKey = @ForeignKey(name = "fk_produto_categoria_categoria_categoria_id")
     )
     private List<Categoria> categorias;
+
+    @OneToOne(mappedBy = "produto")
+    private Estoque estoque;
 }

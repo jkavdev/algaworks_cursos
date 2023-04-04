@@ -18,8 +18,8 @@ public class PagamentoCartao {
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "pedido_id")
+    @OneToOne(optional = false)
+    @JoinColumn(name = "pedido_id", foreignKey = @ForeignKey(name = "fk_pagamento_cartao_pedido_pedido_id"))
     private Pedido pedido;
 
     @Enumerated(EnumType.STRING)

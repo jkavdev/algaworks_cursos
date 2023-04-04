@@ -18,8 +18,9 @@ public class Estoque {
     @EqualsAndHashCode.Include
     private Integer id;
 
-    @Column(name = "produto_id")
-    private Integer produtoId;
+    @OneToOne(optional = false)
+    @JoinColumn(name = "produto_id", foreignKey = @ForeignKey(name = "fk_estoque_produto_produto_id"))
+    private Produto produto;
 
     private Integer quantidade;
 }
